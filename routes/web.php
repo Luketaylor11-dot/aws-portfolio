@@ -8,14 +8,11 @@ Route::get('/original', function () {
     return view('portfolio');
 });
 
-Route::any('/{any}', function (Request $request) {
-    // Get frontend host from environment
-    $nextJsHost = env('NEXTJS_HOST', 'http://127.0.0.1:3000');
+Route::any('/{any?}', function (Request $request) {
+    $upstreamBase = env('NEXTJS_HOST', 'http://127.0.0.1:5174');
 
-    // Build the upstream URL
-    $upstreamUrl = $nextJsHost . '/' . $request->path();
+    $upstreamUrl = rtrim($upstreamBase, '/') . '/' . ltrim($request->path(), '/');
 
-    // Forward the request
     $response = Http::withHeaders([
         'Accept' => $request->header('Accept', '*/*'),
         'Content-Type' => $request->header('Content-Type', ''),
@@ -26,7 +23,12 @@ Route::any('/{any}', function (Request $request) {
         'body' => $request->getContent(),
     ]);
 
-    // Return the response from Next.js
-    return response($response->body(), $response->status())
-        ->withHeaders($response->headers());
+    $headers = collect($response->headers())
+        ->except(['transfer-encoding', 'connection', 'keep-alive'])
+        ->map(fn ($values) => is_array($values) ? implode(', ', $values) : $values)
+        ->toArray();
+
+    return response()->stream(function () use ($response) {
+        echo $response->body();
+    }, $response->status(), $headers);
 })->where('any', '.*');
