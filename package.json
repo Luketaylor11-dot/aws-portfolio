@@ -6,7 +6,7 @@
         "build": "vite build",
         "dev": "vite",
         "dev:next": "npm --prefix resources/portfolio2 run dev -- --port 3001",
-        "dev:fixme": "npm --prefix \"resources/fix me\" run dev -- --host 127.0.0.1 --port 5174",
+        "dev:fixme": "npm --prefix resources/fix-me run dev -- --host 127.0.0.1 --port 5174",
         "dev:all": "concurrently -n vite,next -c blue,green \"npm run dev\" \"npm run dev:next\"",
         "dev:apps": "concurrently -n fixme,next -c cyan,green \"npm run dev:fixme\" \"npm run dev:next\""
     },
