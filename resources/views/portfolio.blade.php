@@ -217,7 +217,7 @@
 
                 <!-- Right Side - Metrics (with profile image) -->
                 <div class="hidden lg:flex flex-col items-center justify-center animate-scale-in" style="animation-delay: 0.2s">
-                    <img src="/img/profile.jpg" alt="Profile" class="w-80 h-80 mt-36 rounded-full object-cover border-4 border-white/10 shadow-lg mb-6">
+                    <img src="/img/profile.jpg" alt="Profile" class="w-80 h-80 mt-36 rounded-full filter brightness-[0.9] object-cover border-4 border-white/10 shadow-lg mb-6">
 
                     <div class="relative w-full max-w-md h-96 bg-gradient-to-br from-blue-600/10   p-8 flex flex-col items-center justify-center gap-8 group hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300">
                         <div class="text-center" style="animation: bounceIn 0.6s ease-out forwards; animation-delay: 0.3s">
