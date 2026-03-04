@@ -189,8 +189,8 @@
                             <span class="text-sm font-semibold text-blue-400">AWS Cloud Solutions Architect</span>
                         </div>
                     </div>
-                    <h1 class="text-6xl md:text-7xl font-bold mb-6 leading-tight text-white animate-slide-up animate-float-up">
-                        Securing the Cloud
+                    <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-white animate-slide-up animate-float-up">
+                        Cloud Architect / AWS / Web Applications
                     </h1>
                     <p class="text-xl text-gray-300 mb-8 leading-relaxed max-w-xl animate-slide-up animate-float-up" style="animation-delay: 0.1s">
                         6 years of high-pressure technical expertise. Transitioning from military network engineering to cloud architecture with a focus on security, automation, and scalable solutions.
@@ -215,9 +215,11 @@
                     </div>
                 </div>
 
-                <!-- Right Side - Metrics -->
-                <div class="hidden lg:flex items-center justify-center animate-scale-in" style="animation-delay: 0.2s">
-                    <div class="relative w-full h-96 bg-gradient-to-br from-blue-600/10 to-cyan-600/10 rounded-2xl border border-blue-500/30 p-8 flex flex-col items-center justify-center gap-8 group hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300">
+                <!-- Right Side - Metrics (with profile image) -->
+                <div class="hidden lg:flex flex-col items-center justify-center animate-scale-in" style="animation-delay: 0.2s">
+                    <img src="/img/profile.jpg" alt="Profile" class="w-80 h-80 mt-36 rounded-full object-cover border-4 border-white/10 shadow-lg mb-6">
+
+                    <div class="relative w-full max-w-md h-96 bg-gradient-to-br from-blue-600/10   p-8 flex flex-col items-center justify-center gap-8 group hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300">
                         <div class="text-center" style="animation: bounceIn 0.6s ease-out forwards; animation-delay: 0.3s">
                             <div class="text-5xl font-bold text-blue-400 mb-2">6<span class="text-3xl">+</span></div>
                             <div class="text-gray-300 text-sm">Years Experience</div>
