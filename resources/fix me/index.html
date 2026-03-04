@@ -14,12 +14,64 @@
   </head>
 
   <body>
+    <style>
+      html, body {
+        margin: 0;
+        background: #0f172a;
+        color: #e5e7eb;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      }
+      #boot-error {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: rgba(2, 6, 23, 0.98);
+        color: #f8fafc;
+        padding: 20px;
+        overflow: auto;
+        white-space: pre-wrap;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        line-height: 1.5;
+      }
+    </style>
+
     <div id="root"></div>
+    <pre id="boot-error"></pre>
+    <script>
+      (function () {
+        const errorPanel = document.getElementById('boot-error');
+        const showError = (title, detail) => {
+          if (!errorPanel) return;
+          errorPanel.style.display = 'block';
+          errorPanel.textContent = `${title}\n\n${detail || ''}`;
+        };
+
+        window.addEventListener('error', (event) => {
+          const message = event?.error?.stack || event?.message || 'Unknown runtime error';
+          showError('Client Runtime Error', message);
+        });
+
+        window.addEventListener('unhandledrejection', (event) => {
+          const reason = event?.reason;
+          const message = reason?.stack || reason?.message || String(reason || 'Unknown promise rejection');
+          showError('Unhandled Promise Rejection', message);
+        });
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <script type="module">
+      const endpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT
+      const websiteId = import.meta.env.VITE_ANALYTICS_WEBSITE_ID
+
+      if (endpoint && websiteId) {
+        const analyticsScript = document.createElement('script')
+        analyticsScript.defer = true
+        analyticsScript.src = `${endpoint}/umami`
+        analyticsScript.setAttribute('data-website-id', websiteId)
+        document.body.appendChild(analyticsScript)
+      }
+    </script>
   </body>
 
 </html>

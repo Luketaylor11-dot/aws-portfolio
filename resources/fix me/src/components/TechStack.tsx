@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Cloud, Shield, Zap, Code, Network, Database } from 'lucide-react';
 
 const technologies = [
@@ -40,6 +41,45 @@ const technologies = [
 ];
 
 export default function TechStack() {
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const rawIndex = entry.target.getAttribute('data-card-index');
+        const cardIndex = rawIndex ? Number(rawIndex) : NaN;
+
+        if (!Number.isNaN(cardIndex)) {
+          setVisibleCards((previous) => {
+            const next = new Set(previous);
+            next.add(cardIndex);
+            return next;
+          });
+        }
+
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -12% 0px',
+    });
+
+    cardRefs.current.forEach((card) => {
+      if (card) {
+        observer.observe(card);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {technologies.map((tech, index) => {
@@ -47,8 +87,12 @@ export default function TechStack() {
         return (
           <div
             key={index}
-            className="group relative overflow-hidden rounded-2xl border border-primary/20 bg-card/50 backdrop-blur-xl p-6 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 animate-in fade-in slide-in-from-bottom-4"
-            style={{ animationDelay: `${index * 100}ms` }}
+            ref={(element) => {
+              cardRefs.current[index] = element;
+            }}
+            data-card-index={index}
+            className={`group relative overflow-hidden rounded-2xl border border-primary/20 bg-card/50 backdrop-blur-xl p-6 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 [transition-timing-function:cubic-bezier(0.25,0.46,0.45,0.94)] ${visibleCards.has(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ transitionDelay: `${index * 60}ms` }}
           >
             {/* Glassmorphism Effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

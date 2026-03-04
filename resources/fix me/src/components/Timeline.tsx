@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 
 const timelineEvents = [
@@ -52,6 +53,45 @@ const timelineEvents = [
 ];
 
 export default function Timeline() {
+  const [visibleEvents, setVisibleEvents] = useState<Set<number>>(new Set());
+  const eventRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const rawIndex = entry.target.getAttribute('data-event-index');
+        const eventIndex = rawIndex ? Number(rawIndex) : NaN;
+
+        if (!Number.isNaN(eventIndex)) {
+          setVisibleEvents((previous) => {
+            const next = new Set(previous);
+            next.add(eventIndex);
+            return next;
+          });
+        }
+
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -12% 0px',
+    });
+
+    eventRefs.current.forEach((eventElement) => {
+      if (eventElement) {
+        observer.observe(eventElement);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="relative">
       {/* Timeline Line */}
@@ -59,12 +99,19 @@ export default function Timeline() {
 
       <div className="space-y-12">
         {timelineEvents.map((event, index) => (
-          <div key={index} className={`relative ${index % 2 === 0 ? 'md:pr-1/2' : 'md:pl-1/2'}`}>
+          <div
+            key={index}
+            ref={(element) => {
+              eventRefs.current[index] = element;
+            }}
+            data-event-index={index}
+            className={`relative ${index % 2 === 0 ? 'md:pr-1/2' : 'md:pl-1/2'}`}
+          >
             <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
               {/* Left side - for even indices */}
               {index % 2 === 0 && (
                 <div className="hidden md:block md:w-1/2 text-right pr-12">
-                  <div className={`group relative overflow-hidden rounded-xl border ${event.highlight ? 'border-primary/50 bg-primary/5' : 'border-primary/20 bg-card/50'} backdrop-blur-xl p-6 hover:border-primary/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 animate-in fade-in slide-in-from-left-4`}>
+                  <div className={`group relative overflow-hidden rounded-xl border ${event.highlight ? 'border-primary/50 bg-primary/5' : 'border-primary/20 bg-card/50'} backdrop-blur-xl p-6 hover:border-primary/80 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 [transition-timing-function:cubic-bezier(0.25,0.46,0.45,0.94)] ${visibleEvents.has(index) ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`} style={{ transitionDelay: `${index * 60}ms` }}>
                     <h3 className="text-2xl font-bold text-foreground mb-2">{event.title}</h3>
                     <p className="text-primary font-semibold mb-3">{event.company}</p>
                     <p className="text-muted-foreground mb-4">{event.description}</p>
@@ -87,7 +134,7 @@ export default function Timeline() {
               {/* Right side - for odd indices and mobile */}
               {index % 2 === 1 || window.innerWidth < 768 ? (
                 <div className={`w-full md:w-1/2 ${index % 2 === 1 ? 'md:pl-12' : ''}`}>
-                  <div className={`group relative overflow-hidden rounded-xl border ${event.highlight ? 'border-primary/50 bg-primary/5' : 'border-primary/20 bg-card/50'} backdrop-blur-xl p-6 hover:border-primary/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 animate-in fade-in slide-in-from-right-4`}>
+                  <div className={`group relative overflow-hidden rounded-xl border ${event.highlight ? 'border-primary/50 bg-primary/5' : 'border-primary/20 bg-card/50'} backdrop-blur-xl p-6 hover:border-primary/80 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 [transition-timing-function:cubic-bezier(0.25,0.46,0.45,0.94)] ${visibleEvents.has(index) ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`} style={{ transitionDelay: `${index * 60}ms` }}>
                     <div className="flex items-start justify-between mb-2">
                       <h3 className="text-2xl font-bold text-foreground">{event.title}</h3>
                       <span className="text-primary font-bold text-lg">{event.year}</span>

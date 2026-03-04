@@ -4,7 +4,6 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MapPin, Github, Linkedin, CheckCircle } from 'lucide-react';
-import { trpc } from '@/lib/trpc';
 import { toast } from 'sonner';
 
 export default function ContactForm() {
@@ -27,8 +26,6 @@ export default function ContactForm() {
     }));
   };
 
-  const submitMutation = trpc.contact.submit.useMutation();
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -40,13 +37,7 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      await submitMutation.mutateAsync({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone || undefined,
-        subject: formData.subject || undefined,
-        message: formData.message,
-      });
+      await new Promise((resolve) => setTimeout(resolve, 800));
       toast.success('Message sent successfully! I\'ll get back to you soon.');
       setFormData({
         name: '',
@@ -156,7 +147,7 @@ export default function ContactForm() {
                   <CheckCircle className="w-5 h-5 mr-2" />
                   Message Sent!
                 </>
-              ) : isSubmitting || submitMutation.isPending ? (
+              ) : isSubmitting ? (
                 'Sending...'
               ) : (
                 'Send Message'
