@@ -2,6 +2,8 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
 export default defineConfig({
+    base: '/dist/',
+    publicDir: false,
     plugins: [react()],
     resolve: {
         alias: {
@@ -10,7 +12,7 @@ export default defineConfig({
         },
     },
     build: {
-        outDir: 'dist',
+        outDir: 'public/dist',
         emptyOutDir: true,
         sourcemap: false,
     },
