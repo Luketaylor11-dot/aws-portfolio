@@ -214,6 +214,29 @@ export default function Home() {
     setMetricTilt({ x: 0, y: 0 });
   };
 
+  const handleNavScroll = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    event.preventDefault();
+
+    if (targetId === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const targetNode = document.getElementById(targetId);
+    if (!targetNode) {
+      return;
+    }
+
+    // Keep section headings clear of the fixed navbar after scroll completes.
+    const navHeight = document.getElementById('navbar')?.offsetHeight ?? 80;
+    const targetTop = targetNode.getBoundingClientRect().top + window.scrollY - navHeight - 8;
+
+    window.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <div className="bg-gray-900 text-white overflow-x-hidden">
       <nav
@@ -222,7 +245,7 @@ export default function Home() {
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <a href="#" className="flex items-center gap-2 group">
+            <a href="#" onClick={(event) => handleNavScroll(event, 'top')} className="flex items-center gap-2 group">
               <div className="w-10 h-10 gradient-blue rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all duration-300 hover:scale-110 transform">
                 <span className="text-white font-bold">LT</span>
               </div>
@@ -232,15 +255,15 @@ export default function Home() {
             </a>
 
             <div className="hidden md:flex items-center gap-8">
-              <a href="#" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 font-medium relative group">
+              <a href="#" onClick={(event) => handleNavScroll(event, 'top')} className="text-gray-300 hover:text-blue-400 transition-colors duration-200 font-medium relative group">
                 Home
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300"></span>
               </a>
-              <a href="#projects" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 font-medium relative group">
+              <a href="#projects" onClick={(event) => handleNavScroll(event, 'projects')} className="text-gray-300 hover:text-blue-400 transition-colors duration-200 font-medium relative group">
                 Projects
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300"></span>
               </a>
-              <a href="#skills" className="text-gray-300 hover:text-blue-400 transition-colors duration-200 font-medium relative group">
+              <a href="#skills" onClick={(event) => handleNavScroll(event, 'skills')} className="text-gray-300 hover:text-blue-400 transition-colors duration-200 font-medium relative group">
                 Skills
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:w-full transition-all duration-300"></span>
               </a>
