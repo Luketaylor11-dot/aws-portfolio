@@ -12,27 +12,9 @@ class ProxyController extends Controller
         return $this->proxy($request, (string) config('proxy.fixme_host'));
     }
 
-    public function portfolio2(Request $request)
-    {
-        return $this->proxy($request, (string) config('proxy.portfolio2_host'), '/second', true);
-    }
-
-    public function portfolio2Root(Request $request)
-    {
-        return $this->proxy($request, (string) config('proxy.portfolio2_host'));
-    }
-
-    private function proxy(Request $request, string $baseUrl, string $stripPrefix = '', bool $rewriteSecondHtml = false)
+    private function proxy(Request $request, string $baseUrl)
     {
         $rawUri = $request->server('REQUEST_URI', '/');
-
-        if ($stripPrefix !== '' && str_starts_with($rawUri, $stripPrefix)) {
-            $rawUri = substr($rawUri, strlen($stripPrefix));
-            $rawUri = $rawUri === '' ? '/' : $rawUri;
-            if (!str_starts_with($rawUri, '/')) {
-                $rawUri = '/' . $rawUri;
-            }
-        }
 
         $upstreamUrl = rtrim($baseUrl, '/') . $rawUri;
 
@@ -52,15 +34,6 @@ class ProxyController extends Controller
             ->toArray();
 
         $body = $response->body();
-        $contentType = strtolower((string) ($headers['Content-Type'] ?? $headers['content-type'] ?? ''));
-
-        if ($rewriteSecondHtml && str_contains($contentType, 'text/html')) {
-            $body = str_replace(
-                ['"/_next/', "'/_next/", 'src="/_next/', 'href="/_next/'],
-                ['"/second/_next/', "'/second/_next/", 'src="/second/_next/', 'href="/second/_next/'],
-                $body
-            );
-        }
 
         return response()->stream(function () use ($body) {
             echo $body;
