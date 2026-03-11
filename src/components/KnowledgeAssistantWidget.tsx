@@ -33,7 +33,7 @@ export default function KnowledgeAssistantWidget() {
       return "fixed inset-4 md:inset-8 z-[70]";
     }
 
-    return "fixed bottom-24 right-4 md:right-6 z-[70] w-[min(92vw,420px)] h-[min(78vh,620px)]";
+    return "fixed top-24 right-4 md:top-auto md:bottom-24 md:right-6 z-[70] w-[min(92vw,420px)] h-[min(78vh,620px)]";
   }, [isExpanded]);
 
   const handleSendMessage = async (content: string) => {
@@ -150,7 +150,7 @@ export default function KnowledgeAssistantWidget() {
             setIsExpanded(false);
           }
         }}
-        className="fixed bottom-6 right-4 md:right-6 z-[75] group flex h-14 items-center gap-2 rounded-full border border-cyan-300/40 bg-gradient-to-r from-sky-500 to-blue-600 px-4 text-sm font-semibold text-white shadow-[0_8px_32px_rgba(59,130,246,0.42)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_38px_rgba(14,165,233,0.55)]"
+        className="fixed top-6 right-4 md:top-auto md:bottom-6 md:right-6 z-[75] group flex h-14 items-center gap-2 rounded-full border border-cyan-300/40 bg-gradient-to-r from-sky-500 to-blue-600 px-4 text-sm font-semibold text-white shadow-[0_8px_32px_rgba(59,130,246,0.42)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_38px_rgba(14,165,233,0.55)]"
         aria-label={isOpen ? "Hide assistant" : "Open assistant"}
       >
         <Bot className="size-5 transition-transform duration-300 group-hover:rotate-6" />
