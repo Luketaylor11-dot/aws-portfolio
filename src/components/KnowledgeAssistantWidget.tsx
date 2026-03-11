@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Bot, Maximize2, Minimize2, X } from "lucide-react";
 import { AIChatBox, type Message } from "@/components/AIChatBox";
 import { cn } from "@/lib/utils";
@@ -27,14 +27,43 @@ export default function KnowledgeAssistantWidget() {
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([starterMessage]);
+  const [keyboardOffset, setKeyboardOffset] = useState(0);
+
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv || !isOpen) {
+      setKeyboardOffset(0);
+      return;
+    }
+
+    const update = () => {
+      const kbHeight = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
+      setKeyboardOffset(kbHeight);
+    };
+
+    vv.addEventListener('resize', update);
+    vv.addEventListener('scroll', update);
+    update();
+
+    return () => {
+      vv.removeEventListener('resize', update);
+      vv.removeEventListener('scroll', update);
+    };
+  }, [isOpen]);
 
   const panelClassName = useMemo(() => {
     if (isExpanded) {
       return "fixed inset-4 md:inset-8 z-[70]";
     }
 
-    return "fixed top-24 right-4 md:top-auto md:bottom-24 md:right-6 z-[70] w-[min(92vw,420px)] h-[min(78dvh,620px)]";
+    return "fixed bottom-4 right-4 md:bottom-24 md:right-6 z-[70] w-[min(92vw,420px)] h-[min(78dvh,620px)] transition-[bottom] duration-150 ease-out";
   }, [isExpanded]);
+
+  const panelStyle = useMemo(() => {
+    if (isExpanded || keyboardOffset === 0) return undefined;
+    // Shift the panel up by exactly the keyboard height, preserving the 16px base gap (bottom-4)
+    return { bottom: `${keyboardOffset + 16}px` };
+  }, [isExpanded, keyboardOffset]);
 
   const handleSendMessage = async (content: string) => {
     const userMessage: Message = { role: "user", content };
@@ -93,7 +122,7 @@ export default function KnowledgeAssistantWidget() {
   return (
     <>
       {isOpen && (
-        <div className={panelClassName}>
+        <div className={panelClassName} style={panelStyle}>
           <div
             className={cn(
               "h-full rounded-2xl border border-blue-400/30 bg-slate-950/95 shadow-[0_12px_60px_rgba(14,165,233,0.28)] backdrop-blur-xl",
