@@ -29,6 +29,7 @@ export default function KnowledgeAssistantWidget() {
   const [messages, setMessages] = useState<Message[]>([starterMessage]);
 
   const scrollYRef = useRef(0);
+  const [viewportOffset, setViewportOffset] = useState(0);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -47,6 +48,26 @@ export default function KnowledgeAssistantWidget() {
       document.body.style.top = "";
       document.body.style.width = "";
       window.scrollTo(0, scrollYRef.current);
+      setViewportOffset(0);
+    };
+  }, [isOpen]);
+
+  // iOS Safari: when the keyboard opens, the visual viewport scrolls up.
+  // We counteract that by tracking the offset and applying it as a translateY.
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv || !isOpen) return;
+
+    const handleViewportChange = () => {
+      setViewportOffset(vv.offsetTop ?? 0);
+    };
+
+    vv.addEventListener("resize", handleViewportChange);
+    vv.addEventListener("scroll", handleViewportChange);
+
+    return () => {
+      vv.removeEventListener("resize", handleViewportChange);
+      vv.removeEventListener("scroll", handleViewportChange);
     };
   }, [isOpen]);
 
@@ -115,7 +136,10 @@ export default function KnowledgeAssistantWidget() {
   return (
     <>
       {isOpen && (
-        <div className={panelClassName}>
+        <div
+          className={panelClassName}
+          style={{ transform: viewportOffset ? `translateY(${viewportOffset}px)` : undefined }}
+        >
           <div
             className={cn(
               "h-full rounded-2xl border border-blue-400/30 bg-slate-950/95 shadow-[0_12px_60px_rgba(14,165,233,0.28)] backdrop-blur-xl",
