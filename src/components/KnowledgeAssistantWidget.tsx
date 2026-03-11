@@ -45,40 +45,15 @@ export default function KnowledgeAssistantWidget() {
       const bg = "linear-gradient(to bottom, #082f49, #172554, #020617)";
       document.documentElement.setAttribute("data-chat-open", "true");
       document.documentElement.style.background = bg;
-      document.documentElement.style.backgroundColor = "#020617";
       document.body.setAttribute("data-chat-open", "true");
       document.body.style.background = bg;
-      document.body.style.backgroundColor = "#020617";
-
-      // Set theme-color so Safari paints the native keyboard gap area dark
-      let tc = document.querySelector<HTMLMetaElement>("meta[name='theme-color']");
-      if (!tc) {
-        tc = document.createElement("meta");
-        tc.name = "theme-color";
-        document.head.appendChild(tc);
-      }
-      tc.setAttribute("data-chat-prev", tc.content);
-      tc.content = "#020617";
       return;
     }
 
     document.documentElement.removeAttribute("data-chat-open");
     document.documentElement.style.background = "";
-    document.documentElement.style.backgroundColor = "";
     document.body.removeAttribute("data-chat-open");
     document.body.style.background = "";
-    document.body.style.backgroundColor = "";
-
-    // Restore original theme-color
-    const tc = document.querySelector<HTMLMetaElement>("meta[name='theme-color']");
-    if (tc) {
-      const prev = tc.getAttribute("data-chat-prev") ?? "";
-      if (prev) {
-        tc.content = prev;
-      } else {
-        tc.remove();
-      }
-    }
   };
 
   useEffect(() => {
@@ -236,9 +211,7 @@ export default function KnowledgeAssistantWidget() {
       body.removeAttribute("data-chat-open");
       document.documentElement.removeAttribute("data-chat-open");
       document.documentElement.style.background = "";
-      document.documentElement.style.backgroundColor = "";
       document.body.style.background = "";
-      document.body.style.backgroundColor = "";
     };
   }, [shouldUseBackdrop]);
 
