@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Bot, Maximize2, Minimize2, X } from "lucide-react";
 import { AIChatBox, type Message } from "@/components/AIChatBox";
 import { cn } from "@/lib/utils";
@@ -28,6 +28,40 @@ export default function KnowledgeAssistantWidget() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([starterMessage]);
   const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const isInputFocusedRef = useRef(false);
+
+  useEffect(() => {
+    if (!isOpen) {
+      isInputFocusedRef.current = false;
+      return;
+    }
+
+    const isTextInput = (el: Element | null) => {
+      if (!el) return false;
+      if (el instanceof HTMLTextAreaElement) return true;
+      if (el instanceof HTMLInputElement) {
+        const type = (el.type || "text").toLowerCase();
+        return type !== "checkbox" && type !== "radio" && type !== "button";
+      }
+      return (el as HTMLElement).isContentEditable;
+    };
+
+    const updateFocusState = () => {
+      const active = document.activeElement;
+      const panel = panelRef.current;
+      isInputFocusedRef.current = Boolean(panel && active && panel.contains(active) && isTextInput(active));
+    };
+
+    document.addEventListener("focusin", updateFocusState);
+    document.addEventListener("focusout", updateFocusState);
+    updateFocusState();
+
+    return () => {
+      document.removeEventListener("focusin", updateFocusState);
+      document.removeEventListener("focusout", updateFocusState);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const vv = window.visualViewport;
@@ -36,9 +70,20 @@ export default function KnowledgeAssistantWidget() {
       return;
     }
 
+    let rafId: number | null = null;
+
     const update = () => {
-      const kbHeight = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
-      setKeyboardOffset(kbHeight);
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+
+      rafId = requestAnimationFrame(() => {
+        const rawKeyboardHeight = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
+        const hasInputFocus = isInputFocusedRef.current;
+        const keyboardHeight = hasInputFocus && rawKeyboardHeight > 120 ? rawKeyboardHeight : 0;
+
+        setKeyboardOffset((prev) => (Math.abs(prev - keyboardHeight) < 2 ? prev : keyboardHeight));
+      });
     };
 
     vv.addEventListener('resize', update);
@@ -46,6 +91,9 @@ export default function KnowledgeAssistantWidget() {
     update();
 
     return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
       vv.removeEventListener('resize', update);
       vv.removeEventListener('scroll', update);
     };
@@ -157,7 +205,7 @@ export default function KnowledgeAssistantWidget() {
         <>
           <div className="fixed inset-0 z-[60] bg-gradient-to-b from-sky-950/95 via-blue-950/92 to-slate-950/95" />
 
-          <div className={panelClassName} style={panelStyle}>
+          <div ref={panelRef} className={panelClassName} style={panelStyle}>
             <div
               className={cn(
                 "h-full rounded-2xl border border-blue-400/30 bg-slate-950/95 shadow-[0_12px_60px_rgba(14,165,233,0.28)] backdrop-blur-xl",
