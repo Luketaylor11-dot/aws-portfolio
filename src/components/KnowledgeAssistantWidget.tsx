@@ -31,6 +31,7 @@ export default function KnowledgeAssistantWidget() {
   const [isChatInputFocused, setIsChatInputFocused] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const isInputFocusedRef = useRef(false);
+  const openedAtRef = useRef(0);
 
   useEffect(() => {
     if (!isOpen) {
@@ -87,6 +88,12 @@ export default function KnowledgeAssistantWidget() {
       }
 
       rafId = requestAnimationFrame(() => {
+        const elapsedSinceOpen = Date.now() - openedAtRef.current;
+        if (elapsedSinceOpen < 220) {
+          setKeyboardOffset(0);
+          return;
+        }
+
         const rawKeyboardHeight = Math.max(0, window.innerHeight - vv.offsetTop - vv.height);
         const hasInputFocus = isInputFocusedRef.current;
         const keyboardHeight = hasInputFocus && rawKeyboardHeight > 120 ? rawKeyboardHeight : 0;
@@ -110,33 +117,43 @@ export default function KnowledgeAssistantWidget() {
 
   useEffect(() => {
     if (!isOpen) return;
-
-    const scrollY = window.scrollY;
     const htmlStyle = document.documentElement.style;
     const bodyStyle = document.body.style;
 
     const previousHtmlOverflow = htmlStyle.overflow;
+    const previousHtmlOverscroll = htmlStyle.overscrollBehavior;
     const previousBodyOverflow = bodyStyle.overflow;
-    const previousBodyPosition = bodyStyle.position;
-    const previousBodyTop = bodyStyle.top;
-    const previousBodyWidth = bodyStyle.width;
     const previousBodyTouchAction = bodyStyle.touchAction;
+    const previousBodyOverscroll = bodyStyle.overscrollBehavior;
 
     htmlStyle.overflow = "hidden";
+    htmlStyle.overscrollBehavior = "none";
     bodyStyle.overflow = "hidden";
-    bodyStyle.position = "fixed";
-    bodyStyle.top = `-${scrollY}px`;
-    bodyStyle.width = "100%";
     bodyStyle.touchAction = "none";
+    bodyStyle.overscrollBehavior = "none";
+
+    const preventBackgroundScroll = (event: TouchEvent | WheelEvent) => {
+      const panel = panelRef.current;
+      const target = event.target as Node | null;
+
+      if (panel && target && panel.contains(target)) {
+        return;
+      }
+
+      event.preventDefault();
+    };
+
+    document.addEventListener("touchmove", preventBackgroundScroll, { passive: false });
+    document.addEventListener("wheel", preventBackgroundScroll, { passive: false });
 
     return () => {
+      document.removeEventListener("touchmove", preventBackgroundScroll);
+      document.removeEventListener("wheel", preventBackgroundScroll);
       htmlStyle.overflow = previousHtmlOverflow;
+      htmlStyle.overscrollBehavior = previousHtmlOverscroll;
       bodyStyle.overflow = previousBodyOverflow;
-      bodyStyle.position = previousBodyPosition;
-      bodyStyle.top = previousBodyTop;
-      bodyStyle.width = previousBodyWidth;
       bodyStyle.touchAction = previousBodyTouchAction;
-      window.scrollTo(0, scrollY);
+      bodyStyle.overscrollBehavior = previousBodyOverscroll;
     };
   }, [isOpen]);
 
@@ -276,6 +293,7 @@ export default function KnowledgeAssistantWidget() {
             setIsChatInputFocused(false);
             setIsOpen(false);
           } else {
+            openedAtRef.current = Date.now();
             setKeyboardOffset(0);
             setIsChatInputFocused(false);
             setIsOpen(true);
