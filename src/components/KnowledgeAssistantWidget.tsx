@@ -42,11 +42,18 @@ export default function KnowledgeAssistantWidget() {
     const isMobileViewport = window.matchMedia("(max-width: 767px)").matches;
 
     if (open && isMobileViewport) {
+      const bg = "linear-gradient(to bottom, #082f49, #172554, #020617)";
+      document.documentElement.setAttribute("data-chat-open", "true");
+      document.documentElement.style.background = bg;
       document.body.setAttribute("data-chat-open", "true");
+      document.body.style.background = bg;
       return;
     }
 
+    document.documentElement.removeAttribute("data-chat-open");
+    document.documentElement.style.background = "";
     document.body.removeAttribute("data-chat-open");
+    document.body.style.background = "";
   };
 
   useEffect(() => {
@@ -88,7 +95,11 @@ export default function KnowledgeAssistantWidget() {
       isInputFocusedRef.current = isFocused;
       setIsChatInputFocused(isFocused);
 
-      if (!isFocused) {
+      if (isFocused) {
+        // Reinforce immediately when keyboard is about to open so iOS scroll animation
+        // doesn't expose the page behind the overlay.
+        syncBodyChatOpenAttribute(true);
+      } else {
         setKeyboardOffset(0);
       }
     };
@@ -198,6 +209,9 @@ export default function KnowledgeAssistantWidget() {
 
     return () => {
       body.removeAttribute("data-chat-open");
+      document.documentElement.removeAttribute("data-chat-open");
+      document.documentElement.style.background = "";
+      document.body.style.background = "";
     };
   }, [shouldUseBackdrop]);
 
