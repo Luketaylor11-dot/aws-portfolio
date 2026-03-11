@@ -49,6 +49,16 @@ export default function KnowledgeAssistantWidget() {
       document.body.setAttribute("data-chat-open", "true");
       document.body.style.background = bg;
       document.body.style.backgroundColor = "#020617";
+
+      // Set theme-color so Safari paints the native keyboard gap area dark
+      let tc = document.querySelector<HTMLMetaElement>("meta[name='theme-color']");
+      if (!tc) {
+        tc = document.createElement("meta");
+        tc.name = "theme-color";
+        document.head.appendChild(tc);
+      }
+      tc.setAttribute("data-chat-prev", tc.content);
+      tc.content = "#020617";
       return;
     }
 
@@ -58,6 +68,17 @@ export default function KnowledgeAssistantWidget() {
     document.body.removeAttribute("data-chat-open");
     document.body.style.background = "";
     document.body.style.backgroundColor = "";
+
+    // Restore original theme-color
+    const tc = document.querySelector<HTMLMetaElement>("meta[name='theme-color']");
+    if (tc) {
+      const prev = tc.getAttribute("data-chat-prev") ?? "";
+      if (prev) {
+        tc.content = prev;
+      } else {
+        tc.remove();
+      }
+    }
   };
 
   useEffect(() => {
@@ -293,7 +314,7 @@ export default function KnowledgeAssistantWidget() {
     <>
       {isOpen && (
         <>
-          {shouldUseBackdrop && <div className="fixed inset-x-0 top-0 z-[80] bg-gradient-to-b from-sky-950 via-blue-950 to-slate-950" style={{ height: "100lvh" }} />}
+          {shouldUseBackdrop && <div className="fixed inset-0 z-[80] bg-gradient-to-b from-sky-950 via-blue-950 to-slate-950" />}
 
           <div ref={panelRef} className={panelClassName} style={panelStyle}>
             <div
