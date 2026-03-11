@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Bot, Maximize2, Minimize2, X } from "lucide-react";
 import { AIChatBox, type Message } from "@/components/AIChatBox";
 import { cn } from "@/lib/utils";
@@ -28,12 +28,34 @@ export default function KnowledgeAssistantWidget() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([starterMessage]);
 
+  const scrollYRef = useRef(0);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isMobile = window.innerWidth < 768;
+    if (!isOpen || !isMobile) return;
+
+    scrollYRef.current = window.scrollY;
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.width = "100%";
+
+    return () => {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollYRef.current);
+    };
+  }, [isOpen]);
+
   const panelClassName = useMemo(() => {
     if (isExpanded) {
       return "fixed inset-4 md:inset-8 z-[70]";
     }
 
-    return "fixed top-24 right-4 md:top-auto md:bottom-24 md:right-6 z-[70] w-[min(92vw,420px)] h-[min(78vh,620px)]";
+    return "fixed top-20 inset-x-0 bottom-0 md:inset-x-auto md:top-auto md:bottom-24 md:right-6 z-[70] md:w-[min(92vw,420px)] md:h-[min(78vh,620px)]";
   }, [isExpanded]);
 
   const handleSendMessage = async (content: string) => {
