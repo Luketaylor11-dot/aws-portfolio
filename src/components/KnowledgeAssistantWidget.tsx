@@ -28,12 +28,15 @@ export default function KnowledgeAssistantWidget() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([starterMessage]);
   const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const [isChatInputFocused, setIsChatInputFocused] = useState(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const isInputFocusedRef = useRef(false);
 
   useEffect(() => {
     if (!isOpen) {
       isInputFocusedRef.current = false;
+      setIsChatInputFocused(false);
+      setKeyboardOffset(0);
       return;
     }
 
@@ -50,7 +53,13 @@ export default function KnowledgeAssistantWidget() {
     const updateFocusState = () => {
       const active = document.activeElement;
       const panel = panelRef.current;
-      isInputFocusedRef.current = Boolean(panel && active && panel.contains(active) && isTextInput(active));
+      const isFocused = Boolean(panel && active && panel.contains(active) && isTextInput(active));
+      isInputFocusedRef.current = isFocused;
+      setIsChatInputFocused(isFocused);
+
+      if (!isFocused) {
+        setKeyboardOffset(0);
+      }
     };
 
     document.addEventListener("focusin", updateFocusState);
@@ -140,10 +149,10 @@ export default function KnowledgeAssistantWidget() {
   }, [isExpanded]);
 
   const panelStyle = useMemo(() => {
-    if (isExpanded || keyboardOffset === 0) return undefined;
+    if (isExpanded || !isChatInputFocused || keyboardOffset === 0) return undefined;
     // Shift the panel up by exactly the keyboard height, preserving the 16px base gap (bottom-4)
     return { bottom: `${keyboardOffset + 16}px` };
-  }, [isExpanded, keyboardOffset]);
+  }, [isExpanded, isChatInputFocused, keyboardOffset]);
 
   const handleSendMessage = async (content: string) => {
     const userMessage: Message = { role: "user", content };
@@ -232,7 +241,11 @@ export default function KnowledgeAssistantWidget() {
                     {isExpanded ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
                   </button>
                   <button
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setKeyboardOffset(0);
+                      setIsChatInputFocused(false);
+                      setIsOpen(false);
+                    }}
                     className="rounded-md border border-white/10 bg-white/5 p-2 text-slate-200 transition hover:border-cyan-300/60 hover:text-white"
                     aria-label="Close chat"
                   >
@@ -258,8 +271,14 @@ export default function KnowledgeAssistantWidget() {
 
       <button
         onClick={() => {
-          setIsOpen((prev) => !prev);
-          if (!isOpen) {
+          if (isOpen) {
+            setKeyboardOffset(0);
+            setIsChatInputFocused(false);
+            setIsOpen(false);
+          } else {
+            setKeyboardOffset(0);
+            setIsChatInputFocused(false);
+            setIsOpen(true);
             setIsExpanded(false);
           }
         }}
