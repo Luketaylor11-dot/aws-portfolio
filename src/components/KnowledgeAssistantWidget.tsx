@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { Bot, Maximize2, Minimize2, X } from "lucide-react";
 import { AIChatBox, type Message } from "@/components/AIChatBox";
 import { cn } from "@/lib/utils";
@@ -28,55 +28,12 @@ export default function KnowledgeAssistantWidget() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([starterMessage]);
 
-  const scrollYRef = useRef(0);
-  const [viewportOffset, setViewportOffset] = useState(0);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const isMobile = window.innerWidth < 768;
-    if (!isOpen || !isMobile) return;
-
-    scrollYRef.current = window.scrollY;
-    document.body.style.overflow = "hidden";
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollYRef.current}px`;
-    document.body.style.width = "100%";
-
-    return () => {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      window.scrollTo(0, scrollYRef.current);
-      setViewportOffset(0);
-    };
-  }, [isOpen]);
-
-  // iOS Safari: when the keyboard opens, the visual viewport scrolls up.
-  // We counteract that by tracking the offset and applying it as a translateY.
-  useEffect(() => {
-    const vv = window.visualViewport;
-    if (!vv || !isOpen) return;
-
-    const handleViewportChange = () => {
-      setViewportOffset(vv.offsetTop ?? 0);
-    };
-
-    vv.addEventListener("resize", handleViewportChange);
-    vv.addEventListener("scroll", handleViewportChange);
-
-    return () => {
-      vv.removeEventListener("resize", handleViewportChange);
-      vv.removeEventListener("scroll", handleViewportChange);
-    };
-  }, [isOpen]);
-
   const panelClassName = useMemo(() => {
     if (isExpanded) {
       return "fixed inset-4 md:inset-8 z-[70]";
     }
 
-    return "fixed top-20 inset-x-0 bottom-0 md:inset-x-auto md:top-auto md:bottom-24 md:right-6 z-[70] md:w-[min(92vw,420px)] md:h-[min(78vh,620px)]";
+    return "fixed top-24 right-4 md:top-auto md:bottom-24 md:right-6 z-[70] w-[min(92vw,420px)] h-[min(78dvh,620px)]";
   }, [isExpanded]);
 
   const handleSendMessage = async (content: string) => {
@@ -136,10 +93,7 @@ export default function KnowledgeAssistantWidget() {
   return (
     <>
       {isOpen && (
-        <div
-          className={panelClassName}
-          style={{ transform: viewportOffset ? `translateY(${viewportOffset}px)` : undefined }}
-        >
+        <div className={panelClassName}>
           <div
             className={cn(
               "h-full rounded-2xl border border-blue-400/30 bg-slate-950/95 shadow-[0_12px_60px_rgba(14,165,233,0.28)] backdrop-blur-xl",
