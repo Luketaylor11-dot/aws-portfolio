@@ -23,7 +23,10 @@ const suggestedPrompts = [
 
 export default function KnowledgeAssistantWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(max-width: 767px)").matches;
+  });
   const [isExpanded, setIsExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -33,6 +36,18 @@ export default function KnowledgeAssistantWidget() {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const isInputFocusedRef = useRef(false);
   const openedAtRef = useRef(0);
+
+  const syncBodyChatOpenAttribute = (open: boolean) => {
+    if (typeof window === "undefined") return;
+    const isMobileViewport = window.matchMedia("(max-width: 767px)").matches;
+
+    if (open && isMobileViewport) {
+      document.body.setAttribute("data-chat-open", "true");
+      return;
+    }
+
+    document.body.removeAttribute("data-chat-open");
+  };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
@@ -288,6 +303,7 @@ export default function KnowledgeAssistantWidget() {
                   </button>
                   <button
                     onClick={() => {
+                      syncBodyChatOpenAttribute(false);
                       setKeyboardOffset(0);
                       setIsChatInputFocused(false);
                       setIsOpen(false);
@@ -318,10 +334,12 @@ export default function KnowledgeAssistantWidget() {
       <button
         onClick={() => {
           if (isOpen) {
+            syncBodyChatOpenAttribute(false);
             setKeyboardOffset(0);
             setIsChatInputFocused(false);
             setIsOpen(false);
           } else {
+            syncBodyChatOpenAttribute(true);
             openedAtRef.current = Date.now();
             setKeyboardOffset(0);
             setIsChatInputFocused(false);
