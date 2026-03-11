@@ -167,8 +167,8 @@ export default function KnowledgeAssistantWidget() {
 
   const panelStyle = useMemo(() => {
     if (isExpanded || !isChatInputFocused || keyboardOffset === 0) return undefined;
-    // Shift the panel up by exactly the keyboard height, preserving the 16px base gap (bottom-4)
-    return { bottom: `${keyboardOffset + 16}px` };
+    // Sit flush with keyboard top while open to avoid exposing a page strip behind the chat.
+    return { bottom: `${keyboardOffset}px` };
   }, [isExpanded, isChatInputFocused, keyboardOffset]);
 
   const handleSendMessage = async (content: string) => {
