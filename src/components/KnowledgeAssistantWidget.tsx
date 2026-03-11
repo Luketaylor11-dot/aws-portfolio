@@ -293,7 +293,7 @@ export default function KnowledgeAssistantWidget() {
     <>
       {isOpen && (
         <>
-          {shouldUseBackdrop && <div className="fixed inset-0 z-[80] bg-gradient-to-b from-sky-950 via-blue-950 to-slate-950" />}
+          {shouldUseBackdrop && <div className="fixed inset-x-0 top-0 z-[80] bg-gradient-to-b from-sky-950 via-blue-950 to-slate-950" style={{ height: "100lvh" }} />}
 
           <div ref={panelRef} className={panelClassName} style={panelStyle}>
             <div
