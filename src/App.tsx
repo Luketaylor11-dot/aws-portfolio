@@ -29,7 +29,9 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <div data-site-content="true">
+            <Router />
+          </div>
           <KnowledgeAssistantWidget />
         </TooltipProvider>
       </ThemeProvider>

@@ -23,6 +23,7 @@ const suggestedPrompts = [
 
 export default function KnowledgeAssistantWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -32,6 +33,20 @@ export default function KnowledgeAssistantWidget() {
   const panelRef = useRef<HTMLDivElement | null>(null);
   const isInputFocusedRef = useRef(false);
   const openedAtRef = useRef(0);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener("change", update);
+
+    return () => {
+      mediaQuery.removeEventListener("change", update);
+    };
+  }, []);
+
+  const shouldUseBackdrop = isOpen && isMobile;
 
   useEffect(() => {
     if (!isOpen) {
@@ -116,7 +131,7 @@ export default function KnowledgeAssistantWidget() {
   }, [isOpen]);
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!shouldUseBackdrop) return;
     const htmlStyle = document.documentElement.style;
     const bodyStyle = document.body.style;
 
@@ -155,7 +170,21 @@ export default function KnowledgeAssistantWidget() {
       bodyStyle.touchAction = previousBodyTouchAction;
       bodyStyle.overscrollBehavior = previousBodyOverscroll;
     };
-  }, [isOpen]);
+  }, [shouldUseBackdrop]);
+
+  useEffect(() => {
+    const body = document.body;
+
+    if (shouldUseBackdrop) {
+      body.setAttribute("data-chat-open", "true");
+    } else {
+      body.removeAttribute("data-chat-open");
+    }
+
+    return () => {
+      body.removeAttribute("data-chat-open");
+    };
+  }, [shouldUseBackdrop]);
 
   const panelClassName = useMemo(() => {
     if (isExpanded) {
@@ -229,7 +258,7 @@ export default function KnowledgeAssistantWidget() {
     <>
       {isOpen && (
         <>
-          <div className="fixed inset-0 z-[80] bg-gradient-to-b from-sky-950 via-blue-950 to-slate-950" />
+          {shouldUseBackdrop && <div className="fixed inset-0 z-[80] bg-gradient-to-b from-sky-950 via-blue-950 to-slate-950" />}
 
           <div ref={panelRef} className={panelClassName} style={panelStyle}>
             <div

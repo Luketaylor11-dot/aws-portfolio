@@ -101,6 +101,14 @@
   }
 }
 
+body[data-chat-open="true"] {
+  background: linear-gradient(to bottom, #082f49, #172554, #020617);
+}
+
+body[data-chat-open="true"] [data-site-content="true"] {
+  visibility: hidden;
+}
+
 @layer utilities {
   @keyframes fade-in {
     from {
