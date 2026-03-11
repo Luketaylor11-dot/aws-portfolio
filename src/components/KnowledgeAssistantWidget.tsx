@@ -159,10 +159,10 @@ export default function KnowledgeAssistantWidget() {
 
   const panelClassName = useMemo(() => {
     if (isExpanded) {
-      return "fixed inset-4 md:inset-8 z-[70]";
+      return "fixed inset-4 md:inset-8 z-[90]";
     }
 
-    return "fixed bottom-4 right-4 md:bottom-24 md:right-6 z-[70] w-[min(92vw,420px)] h-[min(78dvh,620px)] transition-[bottom] duration-150 ease-out";
+    return "fixed bottom-4 right-4 md:bottom-24 md:right-6 z-[90] w-[min(92vw,420px)] h-[min(78dvh,620px)] transition-[bottom] duration-150 ease-out";
   }, [isExpanded]);
 
   const panelStyle = useMemo(() => {
@@ -229,7 +229,7 @@ export default function KnowledgeAssistantWidget() {
     <>
       {isOpen && (
         <>
-          <div className="fixed inset-0 z-[60] bg-gradient-to-b from-sky-950/95 via-blue-950/92 to-slate-950/95" />
+          <div className="fixed inset-0 z-[80] bg-gradient-to-b from-sky-950 via-blue-950 to-slate-950" />
 
           <div ref={panelRef} className={panelClassName} style={panelStyle}>
             <div
@@ -300,7 +300,7 @@ export default function KnowledgeAssistantWidget() {
             setIsExpanded(false);
           }
         }}
-        className="fixed top-6 right-4 md:top-auto md:bottom-6 md:right-6 z-[75] group flex h-14 items-center gap-2 rounded-full border border-cyan-300/40 bg-gradient-to-r from-sky-500 to-blue-600 px-4 text-sm font-semibold text-white shadow-[0_8px_32px_rgba(59,130,246,0.42)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_38px_rgba(14,165,233,0.55)]"
+        className="fixed top-6 right-4 md:top-auto md:bottom-6 md:right-6 z-[95] group flex h-14 items-center gap-2 rounded-full border border-cyan-300/40 bg-gradient-to-r from-sky-500 to-blue-600 px-4 text-sm font-semibold text-white shadow-[0_8px_32px_rgba(59,130,246,0.42)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_38px_rgba(14,165,233,0.55)]"
         aria-label={isOpen ? "Hide assistant" : "Open assistant"}
       >
         <Bot className="size-5 transition-transform duration-300 group-hover:rotate-6" />
