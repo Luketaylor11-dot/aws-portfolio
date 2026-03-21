@@ -34,13 +34,11 @@ export default function Navigation() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group cursor-pointer animate-float-up">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center group-hover:shadow-2xl group-hover:shadow-primary/70 transition-all duration-300 group-hover:scale-110 transform">
-              <span className="text-white font-bold">LT</span>
-            </div>
-            <span className="hidden sm:inline font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary group-hover:animate-shimmer">
-              Luke Taylor
-            </span>
+          <Link
+            href="/"
+            className="group cursor-pointer animate-float-up font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary hover:animate-shimmer"
+          >
+            Luke Taylor
           </Link>
 
           {/* Desktop Navigation */}

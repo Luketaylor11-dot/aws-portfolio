@@ -245,13 +245,12 @@ export default function Home() {
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
-            <a href="#" onClick={(event) => handleNavScroll(event, 'top')} className="flex items-center gap-2 group">
-              <div className="w-10 h-10 gradient-blue rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all duration-300 hover:scale-110 transform">
-                <span className="text-white font-bold">LT</span>
-              </div>
-              <span className="hidden sm:inline font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:opacity-80 transition-opacity">
-                Luke Taylor
-              </span>
+            <a
+              href="#"
+              onClick={(event) => handleNavScroll(event, 'top')}
+              className="group font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 hover:opacity-80 transition-opacity"
+            >
+              Luke Taylor
             </a>
 
             <div className="hidden md:flex items-center gap-8">

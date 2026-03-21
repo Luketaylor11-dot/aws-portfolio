@@ -134,14 +134,9 @@
     <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 md:h-20">
-                <!-- Logo -->
-                <a href="#" class="flex items-center gap-2 group">
-                    <div class="w-10 h-10 gradient-blue rounded-lg flex items-center justify-center group-hover:shadow-glow transition-all duration-300 hover:scale-110 transform">
-                        <span class="text-white font-bold">LT</span>
-                    </div>
-                    <span class="hidden sm:inline font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 group-hover:opacity-80 transition-opacity">
-                        Luke Taylor
-                    </span>
+                <!-- Site title -->
+                <a href="#" class="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 hover:opacity-80 transition-opacity">
+                    Luke Taylor
                 </a>
 
                 <!-- Desktop Navigation -->
