@@ -5,6 +5,7 @@ import { Redirect, Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import KnowledgeAssistantWidget from "./components/KnowledgeAssistantWidget";
 import ScrollToTop from "./components/ScrollToTop";
+import { ENABLE_KNOWLEDGE_ASSISTANT } from "./const";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -36,7 +37,7 @@ function App() {
           <div data-site-content="true">
             <Router />
           </div>
-          <KnowledgeAssistantWidget />
+          {ENABLE_KNOWLEDGE_ASSISTANT ? <KnowledgeAssistantWidget /> : null}
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

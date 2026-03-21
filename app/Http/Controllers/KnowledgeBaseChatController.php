@@ -24,11 +24,18 @@ class KnowledgeBaseChatController extends Controller
         }
 
         $knowledgeBaseId = (string) env('AWS_BEDROCK_KB_ID', '');
-        $modelArn = (string) env('AWS_BEDROCK_MODEL_ID', '');
+        // Prefer inference profile / full model ARN (e.g. us-east-1 Nova Pro). Falls back to legacy model id.
+        $modelArn = (string) env('AWS_BEDROCK_MODEL_ARN', env('AWS_BEDROCK_MODEL_ID', ''));
 
         if ($knowledgeBaseId === '') {
             return response()->json([
                 'message' => 'Missing AWS_BEDROCK_KB_ID configuration.',
+            ], 500);
+        }
+
+        if ($modelArn === '') {
+            return response()->json([
+                'message' => 'Missing AWS_BEDROCK_MODEL_ARN (or AWS_BEDROCK_MODEL_ID) configuration.',
             ], 500);
         }
 
