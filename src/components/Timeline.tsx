@@ -43,7 +43,7 @@ const timelineEvents = [
     highlight: false,
   },
   {
-    year: '2025',
+    year: '2026',
     title: 'AWS Cloud Solutions Architect',
     company: 'In Progress',
     description: 'Transitioning back to IT with focus on AWS Cloud Architecture. Pursuing AWS Solutions Architect Associate certification. Building cloud-native solutions.',

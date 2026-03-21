@@ -557,7 +557,7 @@ export default function Home() {
                   companyClass: 'text-green-400',
                 },
                 {
-                  year: '2025',
+                  year: '2026',
                   role: 'AWS Cloud Solutions Architect',
                   company: 'In Progress',
                   summary: 'Transitioning back to IT with focus on AWS Cloud Architecture. Pursuing AWS Solutions Architect Associate certification. Building cloud-native solutions.',

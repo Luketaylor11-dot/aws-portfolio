@@ -577,7 +577,7 @@
                         </div>
                     </div>
 
-                    <!-- 2025 - AWS Cloud Solutions Architect -->
+                    <!-- 2026 - AWS Cloud Solutions Architect -->
                     <div class="relative md:pl-1/2">
                         <div class="flex flex-col md:flex-row gap-8 items-start md:items-center">
                             <div class="flex justify-center">
@@ -587,7 +587,7 @@
                                 <div class="group relative overflow-hidden rounded-xl border border-cyan-500/50 bg-cyan-500/5 backdrop-blur-xl p-6 hover:border-cyan-500/80 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-600/20">
                                     <div class="flex items-start justify-between mb-2">
                                         <h3 class="text-2xl font-bold text-white">AWS Cloud Solutions Architect</h3>
-                                        <span class="text-cyan-400 font-bold text-lg">2025</span>
+                                        <span class="text-cyan-400 font-bold text-lg">2026</span>
                                     </div>
                                     <p class="text-cyan-400 font-semibold mb-3">In Progress</p>
                                     <p class="text-gray-400 mb-4">Transitioning back to IT with focus on AWS Cloud Architecture. Pursuing AWS Solutions Architect Associate certification. Building cloud-native solutions.</p>
