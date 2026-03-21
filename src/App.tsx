@@ -6,6 +6,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import KnowledgeAssistantWidget from "./components/KnowledgeAssistantWidget";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import ProjectDetail from "./pages/ProjectDetail";
 import Resources from "./pages/Resources";
 
 function Router() {
@@ -13,6 +14,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/resources"} component={Resources} />
+      <Route path={"/projects/:slug"} component={ProjectDetail} />
       <Route path={"/404"} component={NotFound} />
       <Route>
         <Redirect to="/" />

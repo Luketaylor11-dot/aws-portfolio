@@ -1,4 +1,8 @@
+import SiteFooter from '@/components/SiteFooter';
+import { FEATURED_PROJECTS } from '@/data/featuredProjects';
+import { WHY_HIRE_ME_ITEMS, WHY_HIRE_ME_VARIANT_STYLES } from '@/data/whyHireMe';
 import { useEffect, useState } from 'react';
+import { Link } from 'wouter';
 
 const heroParticles = Array.from({ length: 96 }, (_, index) => ({
   left: 2 + ((index * 7) % 96),
@@ -12,7 +16,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [heroScrollY, setHeroScrollY] = useState(0);
   const [metricsAnimated, setMetricsAnimated] = useState(false);
-  const [metricCounts, setMetricCounts] = useState({ years: 0, projects: 0, certs: 0 });
+  const [metricCounts, setMetricCounts] = useState({ years: 0, projects: 0 });
   const [metricTilt, setMetricTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -162,11 +166,7 @@ export default function Home() {
       return;
     }
 
-    const targets = {
-      years: 6,
-      projects: 15,
-      certs: 3,
-    };
+    const targets = { years: 6, projects: 10 };
 
     const duration = 1700;
     let frameId = 0;
@@ -184,7 +184,6 @@ export default function Home() {
       setMetricCounts({
         years: Math.round(targets.years * eased),
         projects: Math.round(targets.projects * eased),
-        certs: Math.round(targets.certs * eased),
       });
 
       if (progress < 1) {
@@ -324,7 +323,6 @@ export default function Home() {
                 <div className="w-14 h-14 rounded-lg gradient-orange flex items-center justify-center text-2xl shadow-lg hover:shadow-orange-500/70 transition-all duration-300 hover:scale-110">☁️</div>
                 <div className="w-14 h-14 rounded-lg gradient-red flex items-center justify-center text-2xl shadow-lg hover:shadow-red-500/70 transition-all duration-300 hover:scale-110">🔐</div>
                 <div className="w-14 h-14 rounded-lg gradient-cyan flex items-center justify-center text-2xl shadow-lg hover:shadow-cyan-500/70 transition-all duration-300 hover:scale-110">⚛️</div>
-                <div className="w-14 h-14 rounded-lg gradient-blue flex items-center justify-center text-2xl shadow-lg hover:shadow-blue-500/70 transition-all duration-300 hover:scale-110">🐍</div>
                 <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center text-2xl shadow-lg hover:shadow-purple-600/70 transition-all duration-300 hover:scale-110">🔗</div>
               </div>
 
@@ -346,7 +344,7 @@ export default function Home() {
                 style={{ transform: `translateY(${heroScrollY * 0.1}px)` }}
               />
               <div
-                className="relative w-full max-w-md h-96 bg-gradient-to-br from-blue-600/10 p-8 flex flex-col items-center justify-center gap-8 group hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-600/30 transition-transform duration-300 [transform-style:preserve-3d] js-hero-metrics"
+                className="relative w-full max-w-md min-h-[280px] py-12 px-8 bg-gradient-to-br from-blue-600/10 rounded-2xl border border-blue-500/20 flex flex-col items-center justify-center gap-8 group hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-600/30 transition-transform duration-300 [transform-style:preserve-3d] js-hero-metrics"
                 style={{
                   transform: `translateY(${heroScrollY * 0.06}px) perspective(900px) rotateX(${metricTilt.x}deg) rotateY(${metricTilt.y}deg)`,
                 }}
@@ -360,10 +358,6 @@ export default function Home() {
                 <div className="text-center">
                   <div className="text-5xl font-bold text-cyan-400 mb-2 hero-metric-glow">{metricCounts.projects}<span className="text-3xl">+</span></div>
                   <div className="text-gray-300 text-sm">Projects Completed</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-5xl font-bold text-blue-300 mb-2 hero-metric-glow">{metricCounts.certs}</div>
-                  <div className="text-gray-300 text-sm">AWS Certifications</div>
                 </div>
               </div>
             </div>
@@ -386,7 +380,7 @@ export default function Home() {
               {
                 title: 'Cloud & Infrastructure',
                 icon: '☁️',
-                skills: ['AWS (SAA)', 'VPC', 'EC2', 'S3', 'Lambda'],
+                skills: ['S3', 'EC2', 'Workmail', 'Knowledgebase', 'Bedrock'],
                 cardClass: 'border-blue-500/20 hover:border-blue-500/50 hover:shadow-blue-600/20',
                 overlayClass: 'from-blue-500/10 to-cyan-500/10',
                 iconClass: 'gradient-orange',
@@ -406,7 +400,7 @@ export default function Home() {
               {
                 title: 'Backend Development',
                 icon: '💻',
-                skills: ['Laravel', 'PHP', 'Node.js', 'Express', 'REST APIs'],
+                skills: ['Laravel', 'PHP', 'REST APIs'],
                 cardClass: 'border-green-500/20 hover:border-green-500/50 hover:shadow-green-600/20',
                 overlayClass: 'from-green-500/10 to-emerald-500/10',
                 iconClass: 'gradient-green',
@@ -416,7 +410,7 @@ export default function Home() {
               {
                 title: 'Frontend Development',
                 icon: '⚡',
-                skills: ['React', 'Vue.js', 'Inertia JS', 'Tailwind', 'TypeScript'],
+                skills: ['React', 'Inertia JS', 'Tailwind'],
                 cardClass: 'border-orange-500/20 hover:border-orange-500/50 hover:shadow-orange-600/20',
                 overlayClass: 'from-orange-500/10 to-red-500/10',
                 iconClass: 'gradient-orange',
@@ -426,7 +420,7 @@ export default function Home() {
               {
                 title: 'Databases & Tools',
                 icon: '💾',
-                skills: ['MySQL', 'Git', 'Docker', 'Linux', 'Automation'],
+                skills: ['MySQL', 'Git', 'Linux', 'Automation'],
                 cardClass: 'border-indigo-500/20 hover:border-indigo-500/50 hover:shadow-indigo-600/20',
                 overlayClass: 'from-indigo-500/10 to-purple-500/10',
                 iconClass: 'bg-gradient-to-br from-indigo-500 to-purple-500',
@@ -436,7 +430,7 @@ export default function Home() {
               {
                 title: 'Programming Languages',
                 icon: '🔤',
-                skills: ['Python', 'JavaScript', 'PHP', 'Bash', 'SQL'],
+                skills: ['HTML', 'CSS', 'JavaScript', 'PHP'],
                 cardClass: 'border-cyan-500/20 hover:border-cyan-500/50 hover:shadow-cyan-600/20',
                 overlayClass: 'from-cyan-500/10 to-blue-500/10',
                 iconClass: 'gradient-cyan',
@@ -469,60 +463,25 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 js-stagger-group">
-            {[
-              {
-                icon: '🏅',
-                title: 'Military Discipline Meets Tech Excellence',
-                desc: 'My 6 years in the Army taught me precision, reliability, and how to perform under pressure. I bring that same rigor to cloud architecture and infrastructure design.',
-                cardClass: 'border-blue-500/20 hover:border-blue-500/50 hover:shadow-blue-600/20',
-                overlayClass: 'from-blue-500/10 via-transparent to-cyan-500/10',
-                iconBgClass: 'bg-blue-500/10 group-hover:bg-blue-500/20',
-                titleClass: 'group-hover:text-blue-400',
-                lineClass: 'from-blue-500 to-cyan-500',
-              },
-              {
-                icon: '🔒',
-                title: 'Security-First Mindset',
-                desc: 'From network security in the military to cloud security in AWS, I understand the importance of protecting critical infrastructure and data at every layer.',
-                cardClass: 'border-purple-500/20 hover:border-purple-500/50 hover:shadow-purple-600/20',
-                overlayClass: 'from-purple-500/10 via-transparent to-pink-500/10',
-                iconBgClass: 'bg-purple-500/10 group-hover:bg-purple-500/20',
-                titleClass: 'group-hover:text-purple-400',
-                lineClass: 'from-purple-500 to-pink-500',
-              },
-              {
-                icon: '🤝',
-                title: 'Bridge Between Teams',
-                desc: 'I speak both languages: military operations and cloud technology. I can translate complex technical concepts for stakeholders and lead cross-functional teams effectively.',
-                cardClass: 'border-cyan-500/20 hover:border-cyan-500/50 hover:shadow-cyan-600/20',
-                overlayClass: 'from-cyan-500/10 via-transparent to-blue-500/10',
-                iconBgClass: 'bg-cyan-500/10 group-hover:bg-cyan-500/20',
-                titleClass: 'group-hover:text-cyan-400',
-                lineClass: 'from-cyan-500 to-blue-500',
-              },
-              {
-                icon: '📈',
-                title: 'Proven Problem Solver',
-                desc: 'Whether managing network infrastructure for 1000+ users or architecting cloud solutions, I deliver scalable, cost-effective solutions that exceed expectations.',
-                cardClass: 'border-green-500/20 hover:border-green-500/50 hover:shadow-green-600/20',
-                overlayClass: 'from-green-500/10 via-transparent to-emerald-500/10',
-                iconBgClass: 'bg-green-500/10 group-hover:bg-green-500/20',
-                titleClass: 'group-hover:text-green-400',
-                lineClass: 'from-green-500 to-emerald-500',
-              },
-            ].map((reason) => (
-              <div key={reason.title} className={`group relative overflow-hidden border bg-gradient-to-br from-gray-800/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-6 transition-all duration-[900ms] hover:shadow-lg opacity-0 translate-y-8 js-stagger-item ${reason.cardClass}`}>
-                <div className={`absolute inset-0 bg-gradient-to-br ${reason.overlayClass} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                <div className="relative">
-                  <div className={`mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg transition-colors ${reason.iconBgClass}`}>
-                    <span className="text-2xl">{reason.icon}</span>
+            {WHY_HIRE_ME_ITEMS.map((reason) => {
+              const styles = WHY_HIRE_ME_VARIANT_STYLES[reason.variant];
+              return (
+                <div
+                  key={reason.title}
+                  className={`group relative overflow-hidden border bg-gradient-to-br from-gray-800/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-6 transition-all duration-[900ms] hover:shadow-lg opacity-0 translate-y-8 js-stagger-item ${styles.cardClass}`}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${styles.overlayClass} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                  <div className="relative">
+                    <div className={`mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg transition-colors ${styles.iconBgClass}`}>
+                      <span className="text-2xl">{reason.emoji}</span>
+                    </div>
+                    <h3 className={`text-lg font-bold mb-3 text-white transition-colors ${styles.titleClass}`}>{reason.title}</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">{reason.description}</p>
+                    <div className={`absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r ${styles.lineClass} group-hover:w-full transition-all duration-300`}></div>
                   </div>
-                  <h3 className={`text-lg font-bold mb-3 text-white transition-colors ${reason.titleClass}`}>{reason.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{reason.desc}</p>
-                  <div className={`absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r ${reason.lineClass} group-hover:w-full transition-all duration-300`}></div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -671,45 +630,28 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto js-stagger-group">
-            {[
-              {
-                icon: '🛡️',
-                title: 'Secure VPC Architecture',
-                desc: 'Designed and implemented a multi-tier VPC with public/private subnets, NAT gateways, and security groups for a financial services client.',
-                cardClass: 'border-blue-500/20 hover:border-blue-500/50 hover:shadow-blue-600/20',
-                overlayClass: 'from-blue-500/5 to-cyan-500/5',
-                iconClass: 'bg-blue-500/10 group-hover:bg-blue-500/20',
-                titleClass: 'group-hover:text-blue-400',
-              },
-              {
-                icon: '⚡',
-                title: 'Serverless API Platform',
-                desc: 'Built a scalable serverless API using Lambda, API Gateway, and DynamoDB with monitoring.',
-                cardClass: 'border-purple-500/20 hover:border-purple-500/50 hover:shadow-purple-600/20',
-                overlayClass: 'from-purple-500/5 to-pink-500/5',
-                iconClass: 'bg-purple-500/10 group-hover:bg-purple-500/20',
-                titleClass: 'group-hover:text-purple-400',
-              },
-              {
-                icon: '☁️',
-                title: 'Cloud Migration Strategy',
-                desc: 'Led migration of on-premises infrastructure to AWS with DR and cost optimization.',
-                cardClass: 'border-cyan-500/20 hover:border-cyan-500/50 hover:shadow-cyan-600/20',
-                overlayClass: 'from-cyan-500/5 to-blue-500/5',
-                iconClass: 'bg-cyan-500/10 group-hover:bg-cyan-500/20',
-                titleClass: 'group-hover:text-cyan-400',
-              },
-            ].map((project) => (
-              <div key={project.title} className={`group relative overflow-hidden border bg-gray-800/50 backdrop-blur-sm rounded-2xl transition-all duration-[900ms] hover:shadow-lg opacity-0 translate-y-8 js-stagger-item ${project.cardClass}`}>
+            {FEATURED_PROJECTS.map((project) => (
+              <Link
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                className={`group relative block overflow-hidden border bg-gray-800/50 backdrop-blur-sm rounded-2xl transition-all duration-[900ms] hover:shadow-lg hover:ring-2 hover:ring-blue-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 opacity-0 translate-y-8 js-stagger-item ${project.cardClass}`}
+                aria-label={`View project: ${project.title}`}
+              >
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.overlayClass} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
                 <div className="relative p-6">
                   <div className={`mb-4 inline-block p-3 rounded-lg transition-colors ${project.iconClass}`}>
                     <span className="text-2xl">{project.icon}</span>
                   </div>
                   <h3 className={`text-xl font-bold mb-3 text-white transition-colors ${project.titleClass}`}>{project.title}</h3>
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">{project.desc}</p>
+                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">{project.shortDesc}</p>
+                  <span className="inline-flex items-center text-sm font-medium text-blue-400 group-hover:text-cyan-400 transition-colors">
+                    View project
+                    <span className="ml-1 group-hover:translate-x-0.5 transition-transform" aria-hidden>
+                      →
+                    </span>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -724,13 +666,26 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8 text-center js-stagger-group">
             {[
-              { icon: '✉️', title: 'Email', text: 'luke@example.com', href: 'mailto:luke@example.com' },
-              { icon: '🔗', title: 'LinkedIn', text: 'Connect with me', href: 'https://linkedin.com' },
-              { icon: '🐙', title: 'GitHub', text: 'View my repositories', href: 'https://github.com' },
+              { icon: '✉️', title: 'Email', text: 'luke@luketaylor.de', href: 'mailto:luke@luketaylor.de' },
+              {
+                icon: '🔗',
+                title: 'LinkedIn',
+                text: 'Connect with me',
+                href: 'https://www.linkedin.com/in/luke-taylor-6355a53aa/',
+              },
+              {
+                icon: '🐙',
+                title: 'GitHub',
+                text: 'View my repositories',
+                href: 'https://github.com/Luketaylor11-dot',
+              },
             ].map((contact) => (
               <a
                 key={contact.title}
                 href={contact.href}
+                {...(contact.href.startsWith('http')
+                  ? { target: '_blank', rel: 'noopener noreferrer' }
+                  : {})}
                 className="group p-6 rounded-2xl border border-blue-500/20 bg-gray-800/50 hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-[900ms] opacity-0 translate-y-8 js-stagger-item"
               >
                 <span className="text-4xl mb-4 block">{contact.icon}</span>
@@ -742,11 +697,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="relative bg-gray-900 py-8 px-4 overflow-hidden">
-        <div className="container mx-auto text-center text-gray-400 relative z-10">
-          <p>&copy; 2024 Luke Taylor. All rights reserved. Built with Laravel & ❤️</p>
-        </div>
-      </footer>
+      <SiteFooter />
       </div>
     </div>
   );

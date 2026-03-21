@@ -1,5 +1,6 @@
-import { Link } from 'wouter';
+import SiteFooter from '@/components/SiteFooter';
 import { Button } from '@/components/ui/button';
+import { Link } from 'wouter';
 import { ArrowLeft, BookOpen, FileText, Link as LinkIcon } from 'lucide-react';
 
 const resources = [
@@ -176,6 +177,8 @@ export default function Resources() {
           </div>
         </div>
       </div>
+
+      <SiteFooter />
     </div>
   );
 }

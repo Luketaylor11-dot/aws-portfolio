@@ -201,7 +201,6 @@
                         <div class="w-14 h-14 rounded-lg gradient-orange flex items-center justify-center text-2xl shadow-lg hover:shadow-orange-500/70 transition-all duration-300 hover:scale-110">☁️</div>
                         <div class="w-14 h-14 rounded-lg gradient-red flex items-center justify-center text-2xl shadow-lg hover:shadow-red-500/70 transition-all duration-300 hover:scale-110">🔐</div>
                         <div class="w-14 h-14 rounded-lg gradient-cyan flex items-center justify-center text-2xl shadow-lg hover:shadow-cyan-500/70 transition-all duration-300 hover:scale-110">⚛️</div>
-                        <div class="w-14 h-14 rounded-lg gradient-blue flex items-center justify-center text-2xl shadow-lg hover:shadow-blue-500/70 transition-all duration-300 hover:scale-110">🐍</div>
                         <div class="w-14 h-14 rounded-lg bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center text-2xl shadow-lg hover:shadow-purple-600/70 transition-all duration-300 hover:scale-110">🔗</div>
                     </div>
                     
@@ -219,20 +218,14 @@
                 <div class="hidden lg:flex flex-col items-center justify-center animate-scale-in" style="animation-delay: 0.2s">
                     <img src="/img/profile.jpg" alt="Profile" class="w-80 h-80 mt-36 rounded-full filter brightness-[0.9] object-cover border-4 border-white/10 shadow-lg mb-6">
 
-                    <div class="relative w-full max-w-md h-96 bg-gradient-to-br from-blue-600/10   p-8 flex flex-col items-center justify-center gap-8 group hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300">
+                    <div class="relative w-full max-w-md min-h-[280px] py-12 px-8 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-600/10 flex flex-col items-center justify-center gap-8 group hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300">
                         <div class="text-center" style="animation: bounceIn 0.6s ease-out forwards; animation-delay: 0.3s">
                             <div class="text-5xl font-bold text-blue-400 mb-2">6<span class="text-3xl">+</span></div>
                             <div class="text-gray-300 text-sm">Years Experience</div>
                         </div>
-                        
                         <div class="text-center" style="animation: bounceIn 0.6s ease-out forwards; animation-delay: 0.4s">
-                            <div class="text-5xl font-bold text-cyan-400 mb-2">15<span class="text-3xl">+</span></div>
+                            <div class="text-5xl font-bold text-cyan-400 mb-2">10<span class="text-3xl">+</span></div>
                             <div class="text-gray-300 text-sm">Projects Completed</div>
-                        </div>
-                        
-                        <div class="text-center" style="animation: bounceIn 0.6s ease-out forwards; animation-delay: 0.5s">
-                            <div class="text-5xl font-bold text-blue-300 mb-2">3</div>
-                            <div class="text-gray-300 text-sm">AWS Certifications</div>
                         </div>
                     </div>
                 </div>
@@ -258,11 +251,11 @@
                         </div>
                         <h3 class="text-xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Cloud & Infrastructure</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium border border-blue-500/20">AWS (SAA)</span>
-                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium border border-blue-500/20">VPC</span>
-                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium border border-blue-500/20">EC2</span>
                             <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium border border-blue-500/20">S3</span>
-                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium border border-blue-500/20">Lambda</span>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium border border-blue-500/20">EC2</span>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium border border-blue-500/20">Workmail</span>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium border border-blue-500/20">Knowledgebase</span>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-sm font-medium border border-blue-500/20">Bedrock</span>
                         </div>
                     </div>
                 </div>
@@ -296,8 +289,6 @@
                         <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-300 text-sm font-medium border border-green-500/20">Laravel</span>
                             <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-300 text-sm font-medium border border-green-500/20">PHP</span>
-                            <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-300 text-sm font-medium border border-green-500/20">Node.js</span>
-                            <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-300 text-sm font-medium border border-green-500/20">Express</span>
                             <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-300 text-sm font-medium border border-green-500/20">REST APIs</span>
                         </div>
                     </div>
@@ -313,10 +304,8 @@
                         <h3 class="text-xl font-bold mb-4 text-white group-hover:text-orange-300 transition-colors">Frontend Development</h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1 rounded-full bg-orange-500/10 text-orange-300 text-sm font-medium border border-orange-500/20">React</span>
-                            <span class="px-3 py-1 rounded-full bg-orange-500/10 text-orange-300 text-sm font-medium border border-orange-500/20">Vue.js</span>
                             <span class="px-3 py-1 rounded-full bg-orange-500/10 text-orange-300 text-sm font-medium border border-orange-500/20">Inertia JS</span>
                             <span class="px-3 py-1 rounded-full bg-orange-500/10 text-orange-300 text-sm font-medium border border-orange-500/20">Tailwind</span>
-                            <span class="px-3 py-1 rounded-full bg-orange-500/10 text-orange-300 text-sm font-medium border border-orange-500/20">TypeScript</span>
                         </div>
                     </div>
                 </div>
@@ -348,11 +337,10 @@
                         </div>
                         <h3 class="text-xl font-bold mb-4 text-white group-hover:text-cyan-300 transition-colors">Programming Languages</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-sm font-medium border border-cyan-500/20">Python</span>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-sm font-medium border border-cyan-500/20">HTML</span>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-sm font-medium border border-cyan-500/20">CSS</span>
                             <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-sm font-medium border border-cyan-500/20">JavaScript</span>
                             <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-sm font-medium border border-cyan-500/20">PHP</span>
-                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-sm font-medium border border-cyan-500/20">Bash</span>
-                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-sm font-medium border border-cyan-500/20">SQL</span>
                         </div>
                     </div>
                 </div>
@@ -399,10 +387,10 @@
                         <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <div class="relative">
                             <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors">
-                                <span class="text-2xl">🤝</span>
+                                <span class="text-2xl">💻</span>
                             </div>
-                            <h3 class="text-lg font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors">Bridge Between Teams</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">I speak both languages: military operations and cloud technology. I can translate complex technical concepts for stakeholders and lead cross-functional teams effectively.</p>
+                            <h3 class="text-lg font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors">Web Dev Experience</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">After completion of my apprenticeship at Cedrec I shipped real systems in Laravel and PHP — including a full database-driven site from scratch including event booking, blogs, inventory with barcode scanners, Mailchimp automation and user permissions</p>
                             <div class="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-cyan-500 to-blue-500 group-hover:w-full transition-all duration-300"></div>
                         </div>
                     </div>
@@ -412,10 +400,10 @@
                         <div class="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <div class="relative">
                             <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-green-500/10 group-hover:bg-green-500/20 transition-colors">
-                                <span class="text-2xl">📈</span>
+                                <span class="text-2xl">🛰️</span>
                             </div>
-                            <h3 class="text-lg font-bold mb-3 text-white group-hover:text-green-400 transition-colors">Proven Problem Solver</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">Whether managing network infrastructure for 1000+ users or architecting cloud solutions, I deliver scalable, cost-effective solutions that exceed expectations.</p>
+                            <h3 class="text-lg font-bold mb-3 text-white group-hover:text-green-400 transition-colors">Networking Experience</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">As a Royal Signals network engineer I worked on LANs, WANs, SATCOM, and radio systems; installed and hardened Cisco routers and switches; designed IPv4 schemes and IPv6 networks; and supported Active Directory for 400+ staff worldwide.</p>
                             <div class="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-green-500 to-emerald-500 group-hover:w-full transition-all duration-300"></div>
                         </div>
                     </div>
@@ -618,6 +606,11 @@
         </div>
     </section>
 
+    {{--
+        LIVE SITE: routes/web.php serves public/dist/index.html (React/Vite) for all URLs.
+        This Blade view is not used when that route is active. To change Featured Projects on the
+        live site, edit src/pages/Home.tsx and run: npm run build
+    --}}
     <!-- Featured Projects Section -->
     <section id="projects" class="relative py-32 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-gray-900 reveal-on-scroll">
         <div class="container mx-auto reveal">
@@ -628,67 +621,67 @@
 
             <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <!-- Project 1 -->
-                <div class="group relative overflow-hidden border border-blue-500/20 bg-gray-800/50 backdrop-blur-sm rounded-2xl hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/20">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden border border-purple-500/20 bg-gray-800/50 backdrop-blur-sm rounded-2xl hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-600/20">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="relative p-6">
-                        <div class="mb-4 inline-block p-3 rounded-lg bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
-                            <span class="text-2xl">🛡️</span>
+                        <div class="mb-4 inline-block p-3 rounded-lg bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
+                            <span class="text-2xl">👊</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">Secure VPC Architecture</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Designed and implemented a multi-tier VPC with public/private subnets, NAT gateways, and security groups for a financial services client.</p>
+                        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-purple-400 transition-colors">Punchyface</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">A phone game built with Expo using Cursor: punch your way up through five floors while dodging obstacles. Features player lives, different enemy types, sound effects, and animations.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-medium border border-blue-500/20">VPC</span>
-                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-medium border border-blue-500/20">Security</span>
-                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-medium border border-blue-500/20">Networking</span>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-medium border border-purple-500/20">Expo</span>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-medium border border-purple-500/20">React Native</span>
+                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-medium border border-purple-500/20">Cursor</span>
                         </div>
                         <div class="flex flex-wrap gap-2 text-xs text-gray-500">
-                            <span>☑️ 99.9% Uptime</span>
-                            <span>☑️ 50% Cost Reduction</span>
-                            <span>☑️ 6-month project</span>
+                            <span>☑️ 5 floors</span>
+                            <span>☑️ Lives & enemy types</span>
+                            <span>☑️ SFX & animations</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="group relative overflow-hidden border border-purple-500/20 bg-gray-800/50 backdrop-blur-sm rounded-2xl hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-600/20">
-                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden border border-cyan-500/20 bg-gray-800/50 backdrop-blur-sm rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-600/20">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="relative p-6">
-                        <div class="mb-4 inline-block p-3 rounded-lg bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
-                            <span class="text-2xl">⚡</span>
+                        <div class="mb-4 inline-block p-3 rounded-lg bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors">
+                            <span class="text-2xl">🗺️</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-purple-400 transition-colors">Serverless API Platform</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Built a scalable serverless API using Lambda, API Gateway, and DynamoDB. Implemented auto-scaling and monitoring with CloudWatch.</p>
+                        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors">Company Organisation App</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Expo organisation app for wind companies hiring contractors: interactive map for where teams are, find people not on active projects filtered by available courses, and track accommodation and vehicles per team with alerts and uploaded vehicle check documents.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-medium border border-purple-500/20">Lambda</span>
-                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-medium border border-purple-500/20">API Gateway</span>
-                            <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-medium border border-purple-500/20">Automation</span>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-medium border border-cyan-500/20">Expo</span>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-medium border border-cyan-500/20">Maps</span>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-medium border border-cyan-500/20">Contractors</span>
                         </div>
                         <div class="flex flex-wrap gap-2 text-xs text-gray-500">
-                            <span>☑️ 10M+ Requests/Month</span>
-                            <span>☑️ Sub-100ms Latency</span>
-                            <span>☑️ Zero Maintenance</span>
+                            <span>☑️ Team locations</span>
+                            <span>☑️ Availability & courses</span>
+                            <span>☑️ Fleet & lodging + alerts</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 3 -->
-                <div class="group relative overflow-hidden border border-cyan-500/20 bg-gray-800/50 backdrop-blur-sm rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-600/20">
-                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="group relative overflow-hidden border border-blue-500/20 bg-gray-800/50 backdrop-blur-sm rounded-2xl hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-600/20">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div class="relative p-6">
-                        <div class="mb-4 inline-block p-3 rounded-lg bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors">
-                            <span class="text-2xl">☁️</span>
+                        <div class="mb-4 inline-block p-3 rounded-lg bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
+                            <span class="text-2xl">🌐</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors">Cloud Migration Strategy</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Led migration of on-premises infrastructure to AWS. Implemented disaster recovery, backup strategies, and cost optimization.</p>
+                        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">AWS Portfolio Website</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Built this website with Laravel and React, then hosted and managed it on AWS with SSL/TLS, a secured EC2 web instance, and a knowledge base integrated with Amazon AI services.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-medium border border-cyan-500/20">Migration</span>
-                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-medium border border-cyan-500/20">DR/BC</span>
-                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-300 text-xs font-medium border border-cyan-500/20">Cost Optimization</span>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-medium border border-blue-500/20">Laravel</span>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-medium border border-blue-500/20">React</span>
+                            <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 text-xs font-medium border border-blue-500/20">AWS</span>
                         </div>
                         <div class="flex flex-wrap gap-2 text-xs text-gray-500">
-                            <span>☑️ 40% Cost Savings</span>
-                            <span>☑️ 3-month Timeline</span>
-                            <span>☑️ 100+ Servers</span>
+                            <span>☑️ SSL/TLS Configured</span>
+                            <span>☑️ Hosted on EC2</span>
+                            <span>☑️ Amazon AI Knowledge Base</span>
                         </div>
                     </div>
                 </div>
@@ -705,19 +698,19 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 text-center">
-                <a href="mailto:luke@example.com" class="group p-6 rounded-2xl border border-blue-500/20 bg-gray-800/50 hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300">
+                <a href="mailto:luke@luketaylor.de" class="group p-6 rounded-2xl border border-blue-500/20 bg-gray-800/50 hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300">
                     <span class="text-4xl mb-4 block">✉️</span>
                     <h3 class="text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors">Email</h3>
-                    <p class="text-gray-400 text-sm">luke@example.com</p>
+                    <p class="text-gray-400 text-sm">luke@luketaylor.de</p>
                 </a>
 
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="group p-6 rounded-2xl border border-blue-500/20 bg-gray-800/50 hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300">
+                <a href="https://www.linkedin.com/in/luke-taylor-6355a53aa/" target="_blank" rel="noopener noreferrer" class="group p-6 rounded-2xl border border-blue-500/20 bg-gray-800/50 hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300">
                     <span class="text-4xl mb-4 block">🔗</span>
                     <h3 class="text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors">LinkedIn</h3>
                     <p class="text-gray-400 text-sm">Connect with me</p>
                 </a>
 
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="group p-6 rounded-2xl border border-blue-500/20 bg-gray-800/50 hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300">
+                <a href="https://github.com/Luketaylor11-dot" target="_blank" rel="noopener noreferrer" class="group p-6 rounded-2xl border border-blue-500/20 bg-gray-800/50 hover:border-blue-500/50 hover:bg-gray-800/80 transition-all duration-300">
                     <span class="text-4xl mb-4 block">🐙</span>
                     <h3 class="text-lg font-bold mb-2 group-hover:text-blue-400 transition-colors">GitHub</h3>
                     <p class="text-gray-400 text-sm">View my repositories</p>
@@ -729,7 +722,7 @@
     <!-- Footer -->
     <footer class="border-t border-gray-800 bg-gray-950 py-8 px-4">
         <div class="container mx-auto text-center text-gray-400">
-            <p>&copy; 2024 Luke Taylor. All rights reserved. Built with Laravel & ❤️</p>
+            <p>&copy; 2026 Luke Taylor. All rights reserved.</p>
         </div>
     </footer>
 

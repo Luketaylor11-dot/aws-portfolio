@@ -38,7 +38,6 @@ export default function HeroSection() {
               <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center text-2xl shadow-lg shadow-orange-500/50 hover:shadow-orange-500/70 transition-all duration-300 hover:scale-110 animate-float" style={{ animationDelay: '0s' }}>☁️</div>
               <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-2xl shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-all duration-300 hover:scale-110 animate-float" style={{ animationDelay: '0.1s' }}>🔴</div>
               <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-2xl shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-all duration-300 hover:scale-110 animate-float" style={{ animationDelay: '0.2s' }}>⚛️</div>
-              <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-2xl shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 transition-all duration-300 hover:scale-110 animate-float" style={{ animationDelay: '0.3s' }}>🐍</div>
               <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center text-2xl shadow-lg shadow-red-600/50 hover:shadow-red-600/70 transition-all duration-300 hover:scale-110 animate-float" style={{ animationDelay: '0.4s' }}>🔴</div>
             </div>
             
@@ -56,23 +55,14 @@ export default function HeroSection() {
 
           {/* Right Side - Animated Metrics */}
           <div className="hidden lg:flex items-center justify-center animate-scale-in" style={{ animationDelay: '0.2s' }}>
-            <div className="relative w-full h-96 bg-gradient-to-br from-blue-600/10 to-cyan-600/10 rounded-2xl border border-blue-500/30 backdrop-blur-sm p-8 flex flex-col items-center justify-center gap-8 group hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300">
-              {/* Metric 1 */}
+            <div className="relative w-full min-h-[280px] bg-gradient-to-br from-blue-600/10 to-cyan-600/10 rounded-2xl border border-blue-500/30 backdrop-blur-sm py-12 px-8 flex flex-col items-center justify-center gap-8 group hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-600/30 transition-all duration-300">
               <div className="text-center animate-bounce-in" style={{ animationDelay: '0.3s' }}>
                 <div className="text-5xl font-bold text-blue-400 mb-2 animate-pulse-count">6<span className="text-3xl">+</span></div>
                 <div className="text-gray-300 text-sm">Years Experience</div>
               </div>
-              
-              {/* Metric 2 */}
               <div className="text-center animate-bounce-in" style={{ animationDelay: '0.4s' }}>
-                <div className="text-5xl font-bold text-cyan-400 mb-2 animate-pulse-count">15<span className="text-3xl">+</span></div>
+                <div className="text-5xl font-bold text-cyan-400 mb-2 animate-pulse-count">10<span className="text-3xl">+</span></div>
                 <div className="text-gray-300 text-sm">Projects Completed</div>
-              </div>
-              
-              {/* Metric 3 */}
-              <div className="text-center animate-bounce-in" style={{ animationDelay: '0.5s' }}>
-                <div className="text-5xl font-bold text-blue-300 mb-2 animate-pulse-count">3</div>
-                <div className="text-gray-300 text-sm">AWS Certifications</div>
               </div>
             </div>
           </div>

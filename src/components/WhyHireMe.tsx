@@ -1,29 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+/** Card layout only — edit titles/copy in `src/data/whyHireMe.ts` (shared with Home). */
+import { WHY_HIRE_ME_ITEMS } from '@/data/whyHireMe';
 import { Card } from '@/components/ui/card';
-import { Award, Target, Users, TrendingUp } from 'lucide-react';
-
-const reasons = [
-  {
-    icon: Award,
-    title: 'Military Discipline Meets Tech Excellence',
-    description: 'My 6 years in the Army taught me precision, reliability, and how to perform under pressure. I bring that same rigor to cloud architecture and infrastructure design.',
-  },
-  {
-    icon: Target,
-    title: 'Security-First Mindset',
-    description: 'From network security in the military to cloud security in AWS, I understand the importance of protecting critical infrastructure and data at every layer.',
-  },
-  {
-    icon: Users,
-    title: 'Bridge Between Teams',
-    description: 'I speak both languages: military operations and cloud technology. I can translate complex technical concepts for stakeholders and lead cross-functional teams effectively.',
-  },
-  {
-    icon: TrendingUp,
-    title: 'Proven Problem Solver',
-    description: 'Whether managing network infrastructure for 1000+ users or architecting cloud solutions, I deliver scalable, cost-effective solutions that exceed expectations.',
-  },
-];
+import { useEffect, useRef, useState } from 'react';
 
 export default function WhyHireMe() {
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
@@ -31,7 +9,7 @@ export default function WhyHireMe() {
 
   useEffect(() => {
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
-      setVisibleCards(new Set(reasons.map((_, index) => index)));
+      setVisibleCards(new Set(WHY_HIRE_ME_ITEMS.map((_, index) => index)));
       return;
     }
 
@@ -72,11 +50,11 @@ export default function WhyHireMe() {
 
   return (
     <div className="grid md:grid-cols-2 gap-6">
-      {reasons.map((reason, index) => {
-        const IconComponent = reason.icon;
+      {WHY_HIRE_ME_ITEMS.map((reason, index) => {
+        const IconComponent = reason.Icon;
         return (
           <div
-            key={index}
+            key={reason.title}
             ref={(element) => {
               cardRefs.current[index] = element;
             }}

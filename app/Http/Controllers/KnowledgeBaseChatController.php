@@ -24,10 +24,7 @@ class KnowledgeBaseChatController extends Controller
         }
 
         $knowledgeBaseId = (string) env('AWS_BEDROCK_KB_ID', '');
-        $modelArn = (string) env(
-            'AWS_BEDROCK_MODEL_ARN',
-            'arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-pro-v1:0'
-        );
+        $modelArn = (string) env('AWS_BEDROCK_MODEL_ID', '');
 
         if ($knowledgeBaseId === '') {
             return response()->json([

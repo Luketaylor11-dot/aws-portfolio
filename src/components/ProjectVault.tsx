@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button';
 
 const projects = [
   {
-    title: 'Static Site Hosting on S3',
-    description: 'Deployed a high-performance static website using AWS S3 with CloudFront CDN distribution. Implemented automated deployments via CI/CD pipeline.',
-    tags: ['Architecture', 'Security', 'Automation'],
-    technologies: ['S3', 'CloudFront', 'Route53', 'CI/CD'],
-    status: 'Planned',
+    title: 'AWS Portfolio Website (Live)',
+    description: 'Built and deployed this portfolio website using Laravel and React on AWS. Configured SSL certificates, provisioned and secured an EC2 web instance, and integrated a knowledge base assistant with Amazon AI services.',
+    tags: ['Web App', 'Security', 'AI Integration'],
+    technologies: ['Laravel', 'React', 'EC2', 'SSL/TLS', 'Amazon AI'],
+    status: 'Completed',
     icon: Cloud,
   },
   {

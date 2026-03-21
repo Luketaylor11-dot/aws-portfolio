@@ -5,7 +5,7 @@ const technologies = [
   {
     category: 'Cloud & Infrastructure',
     icon: Cloud,
-    skills: ['AWS (SAA)', 'VPC', 'EC2', 'S3', 'Lambda'],
+    skills: ['S3', 'EC2', 'Workmail', 'Knowledgebase', 'Bedrock'],
     color: 'from-blue-500 to-cyan-500',
   },
   {
@@ -17,25 +17,25 @@ const technologies = [
   {
     category: 'Backend Development',
     icon: Code,
-    skills: ['Laravel', 'PHP', 'Node.js', 'Express', 'REST APIs'],
+    skills: ['Laravel', 'PHP', 'REST APIs'],
     color: 'from-green-500 to-emerald-500',
   },
   {
     category: 'Frontend Development',
     icon: Zap,
-    skills: ['React', 'Vue.js', 'Inertia JS', 'Tailwind CSS', 'TypeScript'],
+    skills: ['React', 'Vue.js', 'Inertia JS', 'Tailwind CSS'],
     color: 'from-orange-500 to-red-500',
   },
   {
     category: 'Databases & Tools',
     icon: Database,
-    skills: ['MySQL', 'Git', 'Docker', 'Linux', 'Automation'],
+    skills: ['MySQL', 'Git', 'Linux', 'Automation'],
     color: 'from-indigo-500 to-purple-500',
   },
   {
     category: 'Programming Languages',
     icon: Network,
-    skills: ['Python', 'JavaScript', 'PHP', 'Bash', 'SQL'],
+    skills: ['HTML', 'CSS', 'JavaScript', 'PHP'],
     color: 'from-cyan-500 to-blue-500',
   },
 ];
