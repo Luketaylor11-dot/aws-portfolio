@@ -162,7 +162,7 @@
 
                 <!-- Desktop CTA -->
                 <div class="hidden md:flex items-center gap-4" style="animation-delay: 0.4s">
-                    <a href="/resume.pdf" download class="px-4 py-2 border border-blue-500/50 rounded-lg hover:border-blue-500 text-white hover:bg-blue-500/10 transition-all duration-300 hover:scale-110 transform text-sm font-medium">
+                    <a href="/Luke-Taylor-CV-2026.pdf" download="Luke-Taylor-CV-2026.pdf" class="px-4 py-2 border border-blue-500/50 rounded-lg hover:border-blue-500 text-white hover:bg-blue-500/10 transition-all duration-300 hover:scale-110 transform text-sm font-medium">
                         ↓ CV
                     </a>
                     <button class="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:shadow-glow transition-all duration-300 hover:scale-110 transform text-sm font-medium">
@@ -208,7 +208,7 @@
                         <a href="#projects" class="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-glow">
                             📊 View My Work
                         </a>
-                        <a href="/resume.pdf" download class="inline-flex items-center justify-center border border-blue-500/50 hover:border-blue-500 text-white px-8 py-6 text-lg rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-600/30">
+                        <a href="/Luke-Taylor-CV-2026.pdf" download="Luke-Taylor-CV-2026.pdf" class="inline-flex items-center justify-center border border-blue-500/50 hover:border-blue-500 text-white px-8 py-6 text-lg rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-600/30">
                             ⬇️ Download CV
                         </a>
                     </div>

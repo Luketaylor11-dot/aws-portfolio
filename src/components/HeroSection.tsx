@@ -1,5 +1,6 @@
 import { Cloud, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { CV_DOWNLOAD_FILENAME, CV_DOWNLOAD_URL } from '@/const';
 
 export default function HeroSection() {
   return (
@@ -46,9 +47,11 @@ export default function HeroSection() {
                 <Cloud className="w-5 h-5 mr-2" />
                 View My Work
               </Button>
-              <Button variant="outline" className="border-blue-500/50 hover:border-blue-500 text-white px-8 py-6 text-lg rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-600/30 animate-bounce-in" style={{ animationDelay: '0.3s' }}>
-                <Download className="w-5 h-5 mr-2" />
-                Download CV
+              <Button variant="outline" className="border-blue-500/50 hover:border-blue-500 text-white px-8 py-6 text-lg rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-600/30 animate-bounce-in" style={{ animationDelay: '0.3s' }} asChild>
+                <a href={CV_DOWNLOAD_URL} download={CV_DOWNLOAD_FILENAME}>
+                  <Download className="w-5 h-5 mr-2" />
+                  Download CV
+                </a>
               </Button>
             </div>
           </div>

@@ -1,5 +1,9 @@
 export { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 
+/** CV PDF — file must live in `public/` (e.g. copy from `resources/Luke Taylor CV 2026.pdf` when updating). */
+export const CV_DOWNLOAD_URL = "/Luke-Taylor-CV-2026.pdf" as const;
+export const CV_DOWNLOAD_FILENAME = "Luke-Taylor-CV-2026.pdf" as const;
+
 // Generate login URL at runtime so redirect URI reflects the current origin.
 export const getLoginUrl = () => {
   const oauthPortalUrl = import.meta.env.VITE_OAUTH_PORTAL_URL;

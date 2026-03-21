@@ -1,4 +1,5 @@
 import SiteFooter from '@/components/SiteFooter';
+import { CV_DOWNLOAD_FILENAME, CV_DOWNLOAD_URL } from '@/const';
 import { FEATURED_PROJECTS } from '@/data/featuredProjects';
 import { WHY_HIRE_ME_ITEMS, WHY_HIRE_ME_VARIANT_STYLES } from '@/data/whyHireMe';
 import { useEffect, useState } from 'react';
@@ -269,7 +270,11 @@ export default function Home() {
             </div>
 
             <div className="hidden md:flex items-center gap-4">
-              <a href="/resume.pdf" className="px-4 py-2 border border-blue-500/50 rounded-lg hover:border-blue-500 text-white hover:bg-blue-500/10 transition-all duration-300 hover:scale-110 transform text-sm font-medium">
+              <a
+                href={CV_DOWNLOAD_URL}
+                download={CV_DOWNLOAD_FILENAME}
+                className="px-4 py-2 border border-blue-500/50 rounded-lg hover:border-blue-500 text-white hover:bg-blue-500/10 transition-all duration-300 hover:scale-110 transform text-sm font-medium"
+              >
                 ↓ CV
               </a>
               <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:shadow-glow transition-all duration-300 hover:scale-110 transform text-sm font-medium">
@@ -330,7 +335,11 @@ export default function Home() {
                 <a href="#projects" className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-glow">
                   📊 View My Work
                 </a>
-                <a href="/resume.pdf" className="inline-flex items-center justify-center border border-blue-500/50 hover:border-blue-500 text-white px-8 py-6 text-lg rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-600/30">
+                <a
+                  href={CV_DOWNLOAD_URL}
+                  download={CV_DOWNLOAD_FILENAME}
+                  className="inline-flex items-center justify-center border border-blue-500/50 hover:border-blue-500 text-white px-8 py-6 text-lg rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-600/30"
+                >
                   ⬇️ Download CV
                 </a>
               </div>

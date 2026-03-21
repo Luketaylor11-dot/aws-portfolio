@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'wouter';
 import { Menu, X, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { CV_DOWNLOAD_FILENAME, CV_DOWNLOAD_URL } from '@/const';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +61,7 @@ export default function Navigation() {
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4 animate-float-up" style={{ animationDelay: '0.4s' }}>
             <Button variant="outline" size="sm" className="gap-2 hover:scale-110 transform transition-all duration-300" asChild>
-              <a href="/resume.pdf" download>
+              <a href={CV_DOWNLOAD_URL} download={CV_DOWNLOAD_FILENAME}>
                 <Download className="w-4 h-4" />
                 CV
               </a>
@@ -95,7 +96,7 @@ export default function Navigation() {
               ))}
               <div className="pt-4 border-t border-border/30 space-y-2">
                 <Button variant="outline" size="sm" className="w-full gap-2" asChild>
-                  <a href="/resume.pdf" download>
+                  <a href={CV_DOWNLOAD_URL} download={CV_DOWNLOAD_FILENAME}>
                     <Download className="w-4 h-4" />
                     Download CV
                   </a>
