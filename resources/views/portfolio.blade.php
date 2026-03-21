@@ -165,9 +165,9 @@
                     <a href="/Luke-Taylor-CV-2026.pdf" download="Luke-Taylor-CV-2026.pdf" class="px-4 py-2 border border-blue-500/50 rounded-lg hover:border-blue-500 text-white hover:bg-blue-500/10 transition-all duration-300 hover:scale-110 transform text-sm font-medium">
                         ↓ CV
                     </a>
-                    <button class="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:shadow-glow transition-all duration-300 hover:scale-110 transform text-sm font-medium">
+                    <a href="#contact" class="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:shadow-glow transition-all duration-300 hover:scale-110 transform text-sm font-medium inline-block">
                         Contact
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -690,7 +690,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="relative py-32 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-gray-900 reveal-on-scroll">
+    <section id="contact" class="relative py-32 px-4 sm:px-6 lg:px-8 border-t border-gray-800 bg-gray-900 reveal-on-scroll scroll-mt-24">
         <div class="container mx-auto max-w-3xl reveal">
             <div class="text-center mb-12">
                 <h2 class="text-5xl md:text-6xl font-bold mb-6 hover:text-blue-400 transition-colors duration-300">Let's Work Together</h2>

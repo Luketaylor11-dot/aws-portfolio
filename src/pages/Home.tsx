@@ -214,7 +214,7 @@ export default function Home() {
     setMetricTilt({ x: 0, y: 0 });
   };
 
-  const handleNavScroll = (event: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavScroll = (event: React.MouseEvent<HTMLElement>, targetId: string) => {
     event.preventDefault();
 
     if (targetId === 'top') {
@@ -277,9 +277,13 @@ export default function Home() {
               >
                 ↓ CV
               </a>
-              <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:shadow-glow transition-all duration-300 hover:scale-110 transform text-sm font-medium">
+              <a
+                href="#contact"
+                onClick={(event) => handleNavScroll(event, 'contact')}
+                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:shadow-glow transition-all duration-300 hover:scale-110 transform text-sm font-medium inline-block"
+              >
                 Contact
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -666,7 +670,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8 bg-gray-900 overflow-hidden">
+      <section id="contact" className="relative py-32 px-4 sm:px-6 lg:px-8 bg-gray-900 overflow-hidden scroll-mt-24">
         <div className="container mx-auto max-w-3xl relative z-10">
           <div className="text-center mb-12 transition-all duration-[1200ms] [transition-timing-function:cubic-bezier(0.25,0.46,0.45,0.94)] opacity-0 translate-y-8 js-heading-reveal">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 hover:text-blue-400 transition-colors duration-300">Let's Work Together</h2>

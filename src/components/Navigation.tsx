@@ -66,8 +66,8 @@ export default function Navigation() {
                 CV
               </a>
             </Button>
-            <Button size="sm" className="bg-gradient-to-r from-primary to-secondary hover:shadow-2xl hover:shadow-primary/70 transition-all duration-300 hover:scale-110 transform">
-              Contact
+            <Button size="sm" className="bg-gradient-to-r from-primary to-secondary hover:shadow-2xl hover:shadow-primary/70 transition-all duration-300 hover:scale-110 transform" asChild>
+              <a href="#contact">Contact</a>
             </Button>
           </div>
 
@@ -101,8 +101,10 @@ export default function Navigation() {
                     Download CV
                   </a>
                 </Button>
-                <Button size="sm" className="w-full bg-gradient-to-r from-primary to-secondary">
-                  Contact
+                <Button size="sm" className="w-full bg-gradient-to-r from-primary to-secondary" asChild>
+                  <a href="#contact" onClick={() => setIsOpen(false)}>
+                    Contact
+                  </a>
                 </Button>
               </div>
             </div>
