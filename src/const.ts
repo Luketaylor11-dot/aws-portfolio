@@ -4,9 +4,13 @@ export { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 export const CV_DOWNLOAD_URL = "/Luke-Taylor-CV-2026.pdf" as const;
 export const CV_DOWNLOAD_FILENAME = "Luke-Taylor-CV-2026.pdf" as const;
 
-/** Floating Bedrock knowledge assistant. Set `VITE_ENABLE_KNOWLEDGE_ASSISTANT=true` in `.env` to show. */
+/**
+ * Floating Bedrock knowledge assistant.
+ * Default: **on** (so production builds without `.env` still show it).
+ * Set `VITE_ENABLE_KNOWLEDGE_ASSISTANT=false` before `npm run build` to hide.
+ */
 export const ENABLE_KNOWLEDGE_ASSISTANT =
-  import.meta.env.VITE_ENABLE_KNOWLEDGE_ASSISTANT === "true";
+  import.meta.env.VITE_ENABLE_KNOWLEDGE_ASSISTANT !== "false";
 
 // Generate login URL at runtime so redirect URI reflects the current origin.
 export const getLoginUrl = () => {
